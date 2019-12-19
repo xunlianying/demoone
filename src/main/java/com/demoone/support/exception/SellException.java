@@ -16,6 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class SellException extends RuntimeException{
 
+
 	private Integer code;
 
 	private String message;
