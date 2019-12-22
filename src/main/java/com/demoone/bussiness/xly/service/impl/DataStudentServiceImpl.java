@@ -29,7 +29,7 @@ import java.util.List;
  * @since 2019-12-06
  */
 @Service
-public class DataDataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student> implements IDataStudentService {
+public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student> implements IDataStudentService {
 
     /**.
      * 停止学员周期

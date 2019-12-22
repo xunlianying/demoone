@@ -21,7 +21,7 @@ import java.util.List;
  * @since 2019-12-06
  */
 @Service
-public class DataDataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> implements IDataCoachService {
+public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> implements IDataCoachService {
 
     @Override
     public boolean addCoach(DataCoach dataCoach) {

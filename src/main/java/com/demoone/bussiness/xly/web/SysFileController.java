@@ -1,9 +1,8 @@
 package com.demoone.bussiness.xly.web;
 
 
-import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * <p>
@@ -11,10 +10,10 @@ import org.springframework.stereotype.Controller;
  * </p>
  *
  * @author 华强
- * @since 2019-12-06
+ * @since 2019-12-22
  */
 @Controller
-@RequestMapping("/photo")
-public class PhotoController {
+@RequestMapping("/sysFile")
+public class SysFileController {
 
 }

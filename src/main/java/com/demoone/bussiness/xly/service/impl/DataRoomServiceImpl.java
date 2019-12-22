@@ -23,7 +23,7 @@ import java.util.List;
  * @since 2019-12-06
  */
 @Service
-public class DataDataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> implements IDataRoomService {
+public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> implements IDataRoomService {
 
         @Override
         public boolean addRoom(DataRoom dataRoom) {
