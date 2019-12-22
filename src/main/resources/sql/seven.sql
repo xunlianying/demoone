@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50723
-Source Host           : localhost:3306
-Source Database       : demoone
+Source Server         : 127.0.0.1
+Source Server Version : 50722
+Source Host           : 127.0.0.1:3306
+Source Database       : seven
 
 Target Server Type    : MYSQL
-Target Server Version : 50723
+Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2019-06-14 15:45:35
+Date: 2019-12-22 21:22:21
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3327,6 +3327,26 @@ INSERT INTO `common_area` VALUES ('140000', '山西省', '100000', null, '[]', '
 INSERT INTO `common_area` VALUES ('100000', '中华人民共和国', null, null, '[]', '116.3683244', '39.915085', 'zhrmghg');
 
 -- ----------------------------
+-- Table structure for data_coach
+-- ----------------------------
+DROP TABLE IF EXISTS `data_coach`;
+CREATE TABLE `data_coach` (
+  `cid` varchar(32) NOT NULL COMMENT '教练编号',
+  `name` varchar(32) DEFAULT NULL COMMENT '教练姓名',
+  `sex` tinyint(1) DEFAULT NULL COMMENT '性别 1男 2女',
+  `position` varchar(32) DEFAULT NULL COMMENT '职位',
+  `state` int(2) DEFAULT NULL COMMENT '教练状态',
+  `phone` varchar(15) DEFAULT NULL COMMENT '教练联系方式',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`cid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='教练信息表';
+
+-- ----------------------------
+-- Records of data_coach
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for data_file_pic
 -- ----------------------------
 DROP TABLE IF EXISTS `data_file_pic`;
@@ -3403,3 +3423,78 @@ INSERT INTO `data_map_key` VALUES ('e419a11fb5f141babf081ef236f0ace3', 'gaode', 
 INSERT INTO `data_map_key` VALUES ('f022432bacd24c0db13c1d7c604db328', 'gaode', '6c578140d7461411f3c71ea9b3132a1d', null, '2019-03-26 16:54:22', '2019-03-26 16:54:22');
 INSERT INTO `data_map_key` VALUES ('f3726c38b98043b1901fe0a19f82539e', 'gaode', '90425b9709fbf14310ffcdb8cffc490f', null, '2019-03-26 16:54:22', '2019-03-26 16:54:22');
 INSERT INTO `data_map_key` VALUES ('fe9da8930af1490caebff30b45e6bcac', 'gaode', 'fdc51a08f42617cc1c0580344703968d', '2019-03-26', '2019-03-26 16:51:50', '2019-03-26 16:51:50');
+
+-- ----------------------------
+-- Table structure for data_room
+-- ----------------------------
+DROP TABLE IF EXISTS `data_room`;
+CREATE TABLE `data_room` (
+  `rid` varchar(32) NOT NULL,
+  `no` varchar(32) DEFAULT NULL COMMENT '房间号',
+  `state` varchar(32) DEFAULT NULL COMMENT '房间状态',
+  `full_num` int(2) DEFAULT NULL COMMENT '满员人数',
+  `existing_num` int(11) DEFAULT NULL COMMENT '已经入住人数',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`rid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of data_room
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for data_student
+-- ----------------------------
+DROP TABLE IF EXISTS `data_student`;
+CREATE TABLE `data_student` (
+  `sid` varchar(32) NOT NULL COMMENT '学员编号',
+  `name` varchar(32) DEFAULT NULL COMMENT '姓名',
+  `gender` tinyint(1) DEFAULT NULL COMMENT '性别 1男 2女',
+  `id_no` varchar(20) DEFAULT NULL COMMENT '身份证',
+  `base` varchar(64) DEFAULT NULL COMMENT '所属基地',
+  `join_time` date DEFAULT NULL COMMENT '加入时间',
+  `leave_time` date DEFAULT NULL COMMENT '离营时间',
+  `sales` varchar(32) DEFAULT NULL COMMENT '销售（谁招收的学员）',
+  `total_day` int(4) DEFAULT NULL COMMENT '总天数',
+  `surplus_day` int(4) DEFAULT NULL COMMENT '剩余天数',
+  `room_id` int(11) DEFAULT NULL COMMENT '房间id room表id',
+  `room_no` varchar(30) DEFAULT NULL COMMENT '房间编号',
+  `coach_id` varchar(128) DEFAULT NULL COMMENT '所属教练',
+  `cost` decimal(10,2) DEFAULT NULL COMMENT '所交费用',
+  `join_weight` double(10,2) DEFAULT NULL COMMENT '入营体重',
+  `leave_weight` double(10,0) DEFAULT NULL COMMENT '离营体重',
+  `state` int(2) DEFAULT NULL COMMENT '学员状态',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `phone` varchar(15) DEFAULT NULL COMMENT '学员联系方式',
+  PRIMARY KEY (`sid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of data_student
+-- ----------------------------
+INSERT INTO `data_student` VALUES ('string1', 'string', '0', 'string', 'string', '2019-12-08', '2019-12-08', 'string', '48', '37', '0', 'string', 'string', '0.00', '0.00', '0', '1', '2019-12-08 21:30:43', '2019-12-08 21:30:43', null);
+INSERT INTO `data_student` VALUES ('string2', 'string', '0', 'string', 'string', '2019-12-08', '2019-12-08', 'string', '18', '9', '0', 'string', 'string', '0.00', '0.00', '0', '0', '2019-12-08 21:45:04', '2019-12-08 21:45:04', null);
+INSERT INTO `data_student` VALUES ('string3', 'string', '0', 'string', 'string', '2019-12-09', '2019-12-09', 'string', '0', '0', '0', 'string', 'string', '0.00', '0.00', '0', '0', '2019-12-09 22:00:47', '2019-12-09 22:00:47', null);
+
+-- ----------------------------
+-- Table structure for sys_file
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_file`;
+CREATE TABLE `sys_file` (
+  `id` varchar(50) NOT NULL COMMENT 'uuid',
+  `name` varchar(255) DEFAULT NULL COMMENT '照片名称',
+  `size` double DEFAULT NULL COMMENT '大小（k）',
+  `suffix` varchar(50) DEFAULT NULL COMMENT '照片类型 例.png',
+  `path` varchar(255) DEFAULT NULL COMMENT '照片路径',
+  `relationship_id` varchar(30) DEFAULT NULL COMMENT '关联教练，人员，房间id',
+  `type` tinyint(4) DEFAULT NULL COMMENT '照片类型 1学院入营照片 2学员离营照片 3学员合同照片 4教练照片',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sys_file
+-- ----------------------------
