@@ -2,6 +2,7 @@ package com.demoone.bussiness.xly.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.Coach;
 import com.demoone.bussiness.xly.entity.Room;
 import com.demoone.bussiness.xly.entity.Student;
@@ -9,6 +10,8 @@ import com.demoone.bussiness.xly.mapper.StudentDao;
 import com.demoone.bussiness.xly.service.IStudentService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.demoone.bussiness.xly.vo.Base;
+import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
+import com.demoone.bussiness.xly.vo.StudentInfoVo;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.utils.string.StringUtils;
@@ -127,5 +130,12 @@ public class StudentServiceImpl extends ServiceImpl<StudentDao, Student> impleme
     @Override
     public List<Room> roomDropDown() {
         return  baseMapper.roomDropDown();
+    }
+
+    @Override
+    public Page<StudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo) {
+        Page<StudentInfoVo> page = new Page<>(queryStudentInfoVo.getPage(),queryStudentInfoVo.getSize());
+        page.setRecords(baseMapper.queryStudentInfo(page,queryStudentInfoVo));
+        return page;
     }
 }

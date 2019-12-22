@@ -1,10 +1,13 @@
 package com.demoone.bussiness.xly.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.Coach;
 import com.demoone.bussiness.xly.entity.Room;
 import com.demoone.bussiness.xly.entity.Student;
 import com.baomidou.mybatisplus.service.IService;
 import com.demoone.bussiness.xly.vo.Base;
+import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
+import com.demoone.bussiness.xly.vo.StudentInfoVo;
 
 import java.util.List;
 
@@ -53,4 +56,6 @@ public interface IStudentService extends IService<Student> {
      *  获取房间下拉框
      */
     List<Room> roomDropDown();
+
+    Page<StudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo);
 }

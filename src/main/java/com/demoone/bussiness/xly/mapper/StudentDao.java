@@ -1,10 +1,13 @@
 package com.demoone.bussiness.xly.mapper;
 
+import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.Coach;
 import com.demoone.bussiness.xly.entity.Room;
 import com.demoone.bussiness.xly.entity.Student;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.demoone.bussiness.xly.vo.Base;
+import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
+import com.demoone.bussiness.xly.vo.StudentInfoVo;
 import com.demoone.common.entity.CommonArea;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -72,4 +75,6 @@ public interface StudentDao extends BaseMapper<Student> {
   */
     @Select("select r.no from room  r")
     List<Room> roomDropDown();
+
+    List<StudentInfoVo> queryStudentInfo(Page page,QueryStudentInfoVo queryStudentInfoVo);
 }

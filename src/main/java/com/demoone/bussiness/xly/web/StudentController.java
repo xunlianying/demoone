@@ -5,26 +5,18 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.service.IStudentService;
+import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentDropDown;
 import com.demoone.bussiness.xly.vo.StudentManagerHeadVo;
-import com.demoone.common.entity.CommonArea;
-import com.demoone.data.dto.DtoPhoneAddress;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
-import com.demoone.utils.DateUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
-
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <p>
@@ -57,6 +49,14 @@ public class StudentController {
 		return result;
 	}
 
+	@ApiOperation(value = "学员信息查询", notes = "学员信息查询")
+	@PostMapping("addStudent")
+	public OptResult queryStudentInfo(@RequestBody QueryStudentInfoVo queryStudentInfoVo) {
+		OptResult result = null;
+		result.setData(iStudentService.queryStudentInfo(queryStudentInfoVo));
+		return result;
+	}
+
 	@ApiOperation(value = "删除学员信息", notes = "删除学员信息")
 	@GetMapping("delete")
 	public OptResult delete(int id) {
@@ -69,19 +69,19 @@ public class StudentController {
 		}
 		return result;
 	}
-	@ApiOperation(value = "先获取学员信息", notes = "先获取学员信息",response = Student.class)
-	@GetMapping("updateid")
-	@ApiImplicitParams(
-			@ApiImplicitParam(name = "id",value = "学院id",paramType = "query",required = true)
-	)
-	public OptResult updateId(int id) {
-		OptResult result =OptResult.success();
-		Student student=new Student();
-		student.setId(id);
-		Wrapper<Student> ew = new EntityWrapper<>(student);
-		result.setData(iStudentService.selectList(ew));
-		return result;
-	}
+//	@ApiOperation(value = "先获取学员信息", notes = "先获取学员信息",response = Student.class)
+//	@GetMapping("updateid")
+//	@ApiImplicitParams(
+//			@ApiImplicitParam(name = "id",value = "学院id",paramType = "query",required = true)
+//	)
+//	public OptResult updateId(int id) {
+//		OptResult result =OptResult.success();
+//		Student student=new Student();
+//		student.setId(id);
+//		Wrapper<Student> ew = new EntityWrapper<>(student);
+//		result.setData(iStudentService.selectList(ew));
+//		return result;
+//	}
 
 
 	@ApiOperation(value = "停止学员周期", notes = "停止学员周期")

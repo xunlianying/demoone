@@ -26,4 +26,11 @@
         <result column="modify_time" property="modifyTime" />
     </resultMap>
 
+
+    <select id="queryStudentInfo" parameterType="com.demoone.bussiness.xly.vo.QueryStudentInfoVo" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
+        select * from student
+        <where>
+            and gender=#{sex}
+        </where>
+    </select>
 </mapper>
