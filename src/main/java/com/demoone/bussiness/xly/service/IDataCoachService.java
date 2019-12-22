@@ -1,6 +1,6 @@
 package com.demoone.bussiness.xly.service;
 
-import com.demoone.bussiness.xly.entity.Room;
+import com.demoone.bussiness.xly.entity.DataCoach;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -11,7 +11,7 @@ import com.baomidou.mybatisplus.service.IService;
  * @author 华强
  * @since 2019-12-06
  */
-public interface IRoomService extends IService<Room> {
+public interface IDataCoachService extends IService<DataCoach> {
 
-    boolean addRoom(Room room);
+    boolean addCoach(DataCoach dataCoach);
 }

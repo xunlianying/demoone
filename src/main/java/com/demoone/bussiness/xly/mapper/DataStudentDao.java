@@ -1,15 +1,13 @@
 package com.demoone.bussiness.xly.mapper;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.demoone.bussiness.xly.entity.Coach;
-import com.demoone.bussiness.xly.entity.Room;
+import com.demoone.bussiness.xly.entity.DataCoach;
+import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.entity.Student;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.demoone.bussiness.xly.vo.Base;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentInfoVo;
-import com.demoone.common.entity.CommonArea;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -25,7 +23,7 @@ import java.util.List;
  * @since 2019-12-06
  */
 
-public interface StudentDao extends BaseMapper<Student> {
+public interface DataStudentDao extends BaseMapper<Student> {
 
     /*
      * 停止学员周期
@@ -68,13 +66,13 @@ public interface StudentDao extends BaseMapper<Student> {
       * 获取教练下拉框数据
       */
     @Select("select c.cid,c.name from coach c")
-    List<Coach> coachDropDown();
+    List<DataCoach> coachDropDown();
 
     /*
   * 获取教练下拉框数据
   */
     @Select("select r.no from room  r")
-    List<Room> roomDropDown();
+    List<DataRoom> roomDropDown();
 
     List<StudentInfoVo> queryStudentInfo(Page page,QueryStudentInfoVo queryStudentInfoVo);
 }

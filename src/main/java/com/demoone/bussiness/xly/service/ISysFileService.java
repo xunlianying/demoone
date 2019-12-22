@@ -1,6 +1,6 @@
 package com.demoone.bussiness.xly.service;
 
-import com.demoone.bussiness.xly.entity.Coach;
+import com.demoone.bussiness.xly.entity.SysFile;
 import com.baomidou.mybatisplus.service.IService;
 
 /**
@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.service.IService;
  * @author 华强
  * @since 2019-12-06
  */
-public interface ICoachService extends IService<Coach> {
+public interface ISysFileService extends IService<SysFile> {
 
-    boolean addCoach(Coach coach);
 }

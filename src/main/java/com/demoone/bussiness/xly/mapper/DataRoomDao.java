@@ -1,6 +1,6 @@
 package com.demoone.bussiness.xly.mapper;
 
-import com.demoone.bussiness.xly.entity.Photo;
+import com.demoone.bussiness.xly.entity.DataRoom;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author 华强
  * @since 2019-12-06
  */
-public interface PhotoDao extends BaseMapper<Photo> {
+public interface DataRoomDao extends BaseMapper<DataRoom> {
+
 
 }

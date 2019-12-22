@@ -1,8 +1,8 @@
 package com.demoone.bussiness.xly.service;
 
 import com.baomidou.mybatisplus.plugins.Page;
-import com.demoone.bussiness.xly.entity.Coach;
-import com.demoone.bussiness.xly.entity.Room;
+import com.demoone.bussiness.xly.entity.DataCoach;
+import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.entity.Student;
 import com.baomidou.mybatisplus.service.IService;
 import com.demoone.bussiness.xly.vo.Base;
@@ -19,7 +19,7 @@ import java.util.List;
  * @author 华强
  * @since 2019-12-06
  */
-public interface IStudentService extends IService<Student> {
+public interface IDataStudentService extends IService<Student> {
     /**
      *  停止学员周期
      */
@@ -51,11 +51,11 @@ public interface IStudentService extends IService<Student> {
     /**
      *  获取教练下拉框
      */
-    List<Coach> coachDropDown();
+    List<DataCoach> coachDropDown();
     /**
      *  获取房间下拉框
      */
-    List<Room> roomDropDown();
+    List<DataRoom> roomDropDown();
 
     Page<StudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo);
 }

@@ -1,11 +1,11 @@
 package com.demoone.bussiness.xly.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
+import com.baomidou.mybatisplus.enums.IdType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -21,32 +21,35 @@ import java.io.Serializable;
  * @author 华强
  * @since 2019-12-06
  */
-@TableName("coach")
-@ApiModel("教练类")
+@TableName("photo")
+@ApiModel("照片类")
 @Data
 @ToString
-public class Coach extends Model<Coach> {
+public class SysFile extends Model<SysFile> {
 
     private static final long serialVersionUID = 1L;
-
     @ApiModelProperty("自增主键id")
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
-    @ApiModelProperty("教练编号")
-    private String cid;
-
-    @ApiModelProperty("教练姓名")
+    @ApiModelProperty("照片名称")
     private String name;
 
-    @ApiModelProperty("性别 1男 2女")
-    private Integer sex;
+    @ApiModelProperty("大小（k）")
+    private Double size;
 
-    @ApiModelProperty("职位")
-    private String position;
+    @ApiModelProperty("照片类型 例.png")
+    private String suffix;
 
-    @ApiModelProperty("教练状态")
-    private Integer state;
+    @ApiModelProperty("照片路径")
+    private String path;
+
+    @ApiModelProperty("关联教练，人员，房间id")
+    @TableField("relationship_id")
+    private String relationshipId;
+
+    @ApiModelProperty("照片类型 1学院入营照片 2学员离营照片 3学员合同照片 4教练照片")
+    private Integer type;
 
     @ApiModelProperty("创建时间")
     @TableField("create_time")
@@ -60,5 +63,6 @@ public class Coach extends Model<Coach> {
     protected Serializable pkVal() {
         return this.id;
     }
+
 
 }

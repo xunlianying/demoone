@@ -3,8 +3,8 @@ package com.demoone.bussiness.xly.web;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
-import com.demoone.bussiness.xly.entity.Room;
-import com.demoone.bussiness.xly.service.IRoomService;
+import com.demoone.bussiness.xly.entity.DataRoom;
+import com.demoone.bussiness.xly.service.IDataRoomService;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
@@ -13,13 +13,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
-
-import java.util.List;
 
 /**
  * <p>
@@ -32,19 +27,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/room")
 @Api(value = "RoomController", description = "房间信息")
-public class RoomController {
+public class DataRoomController {
 
 
 
     @Autowired
-    private IRoomService iRoomService;
+    private IDataRoomService iDataRoomService;
 
     @ApiOperation(value = "增加房间信息", notes = "增加房间信息")
     @PostMapping("addRoom")
     @ResponseBody
-    public OptResult addRoom(@RequestBody Room room) {
+    public OptResult addRoom(@RequestBody DataRoom dataRoom) {
         OptResult result = null;
-        if (iRoomService.addRoom(room)){
+        if (iDataRoomService.addRoom(dataRoom)){
             result= OptResult.success();
             result.setMsg("添加成功！");
         }else {
@@ -58,7 +53,7 @@ public class RoomController {
     @ResponseBody
     public OptResult queryCompInfoByCondition(int id) {
         OptResult result = null;
-        if (iRoomService.deleteById(id)){
+        if (iDataRoomService.deleteById(id)){
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
@@ -82,13 +77,13 @@ public class RoomController {
         if (size ==null){
             size=10;
         }
-        EntityWrapper<Room> ew = new EntityWrapper();
+        EntityWrapper<DataRoom> ew = new EntityWrapper();
         if (StringUtils.isNotBlank(roomNo)){
             ew.eq("room_id",roomNo);
         }
-        Page<Room> pageRoom = new Page<>(page,size);
+        Page<DataRoom> pageRoom = new Page<>(page,size);
 
-        result.setData(iRoomService.selectPage(pageRoom,ew));
+        result.setData(iDataRoomService.selectPage(pageRoom,ew));
         return result;
     }
 }

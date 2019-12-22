@@ -1,10 +1,8 @@
 package com.demoone.bussiness.xly.web;
 
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.demoone.bussiness.xly.entity.Student;
-import com.demoone.bussiness.xly.service.IStudentService;
+import com.demoone.bussiness.xly.service.IDataStudentService;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentDropDown;
 import com.demoone.bussiness.xly.vo.StudentManagerHeadVo;
@@ -12,8 +10,6 @@ import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,17 +25,17 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/xly/base/student")
 @Api(value = "StudentController", description = "学员信息")
-public class StudentController {
+public class DataStudentController {
 
 
 	@Autowired
-	private IStudentService iStudentService;
+	private IDataStudentService iDataStudentService;
 
 	@ApiOperation(value = "增加学员信息", notes = "增加学员信息")
 	@PostMapping("addStudent")
 	public OptResult addStudent(@RequestBody Student student) {
 		OptResult result = null;
-		if (iStudentService.addStudent(student)){
+		if (iDataStudentService.addStudent(student)){
 			result= OptResult.success();
 			result.setMsg("添加成功!");
 		}else {
@@ -53,7 +49,7 @@ public class StudentController {
 	@PostMapping("addStudent")
 	public OptResult queryStudentInfo(@RequestBody QueryStudentInfoVo queryStudentInfoVo) {
 		OptResult result = null;
-		result.setData(iStudentService.queryStudentInfo(queryStudentInfoVo));
+		result.setData(iDataStudentService.queryStudentInfo(queryStudentInfoVo));
 		return result;
 	}
 
@@ -61,7 +57,7 @@ public class StudentController {
 	@GetMapping("delete")
 	public OptResult delete(int id) {
 		OptResult result = null;
-		if (iStudentService.deleteById(id)){
+		if (iDataStudentService.deleteById(id)){
 			result= OptResult.success();
 			result.setMsg("删除成功！");
 		}else {
@@ -88,7 +84,7 @@ public class StudentController {
 	@GetMapping("tingzhouqi")
 	public OptResult tingZhouQi(int id) {
 		OptResult result = null;
-		if (iStudentService.tingZhouQi(id)){
+		if (iDataStudentService.tingZhouQi(id)){
 			result= OptResult.success();
 			result.setMsg("停止学员周期成功！");
 		}else {
@@ -102,7 +98,7 @@ public class StudentController {
 	@GetMapping("jiantianshu")
 	public OptResult jianTianShu(int id) {
 		OptResult result = null;
-		if (iStudentService.jianTianShu(id)){
+		if (iDataStudentService.jianTianShu(id)){
 			result= OptResult.success();
 			result.setMsg("减学员天数成功！");
 		}else {
@@ -116,9 +112,9 @@ public class StudentController {
 	public OptResult zongZaiYing() {
 		OptResult result =OptResult.success();
 		StudentManagerHeadVo studentManagerHeadVo = new StudentManagerHeadVo();
-		studentManagerHeadVo.setZongzaiying(iStudentService.zongZaiYing());
-		studentManagerHeadVo.setJinchuying(iStudentService.jinChuYing());
-		studentManagerHeadVo.setJinruying(iStudentService.jinRuYing());
+		studentManagerHeadVo.setZongzaiying(iDataStudentService.zongZaiYing());
+		studentManagerHeadVo.setJinchuying(iDataStudentService.jinChuYing());
+		studentManagerHeadVo.setJinruying(iDataStudentService.jinRuYing());
 		result.setData(studentManagerHeadVo);
 		return result;
 	}
@@ -130,9 +126,9 @@ public class StudentController {
 	public OptResult StudentDropDown() {
 		OptResult result =OptResult.success();
 		StudentDropDown studentDropDown = new StudentDropDown();
-		studentDropDown.setBasedropdown(iStudentService.baseDropDown());
-		studentDropDown.setCoachdropdown(iStudentService.coachDropDown());
-		studentDropDown.setRoomdropdown(iStudentService.roomDropDown());
+		studentDropDown.setBasedropdown(iDataStudentService.baseDropDown());
+		studentDropDown.setCoachdropdown(iDataStudentService.coachDropDown());
+		studentDropDown.setRoomdropdown(iDataStudentService.roomDropDown());
 		result.setData(studentDropDown);
 		return result;
 	}

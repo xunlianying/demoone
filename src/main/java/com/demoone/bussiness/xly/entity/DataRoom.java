@@ -1,8 +1,7 @@
 package com.demoone.bussiness.xly.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -21,17 +20,15 @@ import java.io.Serializable;
  * @author 华强
  * @since 2019-12-06
  */
-@TableName("room")
+@TableName("data_room")
 @Data
 @ToString
 @ApiModel("房间类")
-public class Room extends Model<Room> {
+public class DataRoom extends Model<DataRoom> {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("自增主键id")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
+    private String rid;
 
     @ApiModelProperty("房间号")
     private String no;
@@ -57,7 +54,7 @@ public class Room extends Model<Room> {
 
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.rid;
     }
 
 

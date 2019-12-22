@@ -1,10 +1,8 @@
 package com.demoone.bussiness.xly.web;
 
 
-import com.demoone.bussiness.xly.entity.Coach;
-import com.demoone.bussiness.xly.entity.Room;
-import com.demoone.bussiness.xly.service.ICoachService;
-import com.demoone.bussiness.xly.service.IRoomService;
+import com.demoone.bussiness.xly.entity.DataCoach;
+import com.demoone.bussiness.xly.service.IDataCoachService;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
@@ -12,10 +10,6 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import org.springframework.stereotype.Controller;
-
-import java.util.List;
 
 /**
  * <p>
@@ -28,19 +22,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/coach")
 @Api(value = "CoachController", description = "教练信息")
-public class CoachController {
+public class DataCoachController {
 
 
 
     @Autowired
-    private ICoachService  iCoachService;
+    private IDataCoachService iDataCoachService;
 
     @ApiOperation(value = "批量增加教练信息", notes = "批量增加教练信息")
     @PostMapping("addCoach")
     @ResponseBody
-    public OptResult addCoach(@RequestBody Coach coach) {
+    public OptResult addCoach(@RequestBody DataCoach dataCoach) {
         OptResult result = null;
-        if (iCoachService.addCoach(coach)){
+        if (iDataCoachService.addCoach(dataCoach)){
             result= OptResult.success();
             result.setMsg("添加成功！");
         }else {
@@ -53,7 +47,7 @@ public class CoachController {
     @ResponseBody
     public OptResult queryCompInfoByCondition(int id) {
         OptResult result = null;
-        if (iCoachService.deleteById(id)){
+        if (iDataCoachService.deleteById(id)){
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {

@@ -31,10 +31,6 @@ public class Student extends Model<Student> {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty("自增主键id")
-    @TableId(value = "id", type = IdType.AUTO)
-    private Integer id;
-
 
     @ApiModelProperty("学员编号")
     private String sid;
@@ -106,9 +102,12 @@ public class Student extends Model<Student> {
     @TableField("modify_time")
     private Date modifyTime;
 
+    @ApiModelProperty("学员联系方式")
+    private String phone;
+
     @Override
     protected Serializable pkVal() {
-        return this.id;
+        return this.sid;
     }
 
 }

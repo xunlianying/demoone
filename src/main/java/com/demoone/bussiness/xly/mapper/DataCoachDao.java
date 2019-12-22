@@ -1,6 +1,6 @@
 package com.demoone.bussiness.xly.mapper;
 
-import com.demoone.bussiness.xly.entity.Coach;
+import com.demoone.bussiness.xly.entity.DataCoach;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author 华强
  * @since 2019-12-06
  */
-public interface CoachDao extends BaseMapper<Coach> {
+public interface DataCoachDao extends BaseMapper<DataCoach> {
 
 }

@@ -1,7 +1,7 @@
 package com.demoone.bussiness.xly.vo;
 
-import com.demoone.bussiness.xly.entity.Coach;
-import com.demoone.bussiness.xly.entity.Room;
+import com.demoone.bussiness.xly.entity.DataCoach;
+import com.demoone.bussiness.xly.entity.DataRoom;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -19,10 +19,10 @@ public class StudentDropDown {
 
 
     @ApiModelProperty("教练下拉框")
-    private List<Coach> coachdropdown;
+    private List<DataCoach> coachdropdown;
 
     @ApiModelProperty("房间下拉框")
-    private List<Room> roomdropdown;
+    private List<DataRoom> roomdropdown;
 
 
 

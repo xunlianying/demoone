@@ -1,6 +1,6 @@
 package com.demoone.bussiness.xly.mapper;
 
-import com.demoone.bussiness.xly.entity.Room;
+import com.demoone.bussiness.xly.entity.SysFile;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 
 /**
@@ -11,7 +11,6 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
  * @author 华强
  * @since 2019-12-06
  */
-public interface RoomDao extends BaseMapper<Room> {
-
+public interface SysFileDao extends BaseMapper<SysFile> {
 
 }

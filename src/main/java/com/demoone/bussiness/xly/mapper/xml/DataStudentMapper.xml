@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.demoone.bussiness.xly.mapper.StudentDao">
+<mapper namespace="com.demoone.bussiness.xly.mapper.DataStudentDao">
 
     <!-- 通用查询映射结果 -->
     <resultMap id="BaseResultMap" type="com.demoone.bussiness.xly.entity.Student">
-        <id column="id" property="id" />
-        <result column="sid" property="sid" />
+        <id column="sid" property="sid" />
         <result column="name" property="name" />
         <result column="gender" property="gender" />
         <result column="id_no" property="idNo" />
@@ -24,13 +23,20 @@
         <result column="state" property="state" />
         <result column="create_time" property="createTime" />
         <result column="modify_time" property="modifyTime" />
+        <result column="phone" property="phone" />
     </resultMap>
 
 
     <select id="queryStudentInfo" parameterType="com.demoone.bussiness.xly.vo.QueryStudentInfoVo" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
         select * from student
         <where>
-            and gender=#{sex}
+            <if test="sex!=null">
+                and gender=#{sex}
+            </if>
+            <if test="name!=null and name!=''">
+                and naem=#{name}
+            </if>
+
         </where>
     </select>
 </mapper>

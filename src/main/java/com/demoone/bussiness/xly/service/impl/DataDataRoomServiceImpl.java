@@ -2,9 +2,9 @@ package com.demoone.bussiness.xly.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.demoone.bussiness.xly.entity.Room;
-import com.demoone.bussiness.xly.mapper.RoomDao;
-import com.demoone.bussiness.xly.service.IRoomService;
+import com.demoone.bussiness.xly.entity.DataRoom;
+import com.demoone.bussiness.xly.mapper.DataRoomDao;
+import com.demoone.bussiness.xly.service.IDataRoomService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
@@ -23,19 +23,19 @@ import java.util.List;
  * @since 2019-12-06
  */
 @Service
-public class RoomServiceImpl extends ServiceImpl<RoomDao, Room> implements IRoomService {
+public class DataDataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> implements IDataRoomService {
 
         @Override
-        public boolean addRoom(Room room) {
-                if (StringUtils.isNotBlank(room.getNo())){
-                        Wrapper<Room> ew = new EntityWrapper();
-                        ew.eq("no",room.getNo());
-                        List<Room> list = selectList(ew);
+        public boolean addRoom(DataRoom dataRoom) {
+                if (StringUtils.isNotBlank(dataRoom.getNo())){
+                        Wrapper<DataRoom> ew = new EntityWrapper();
+                        ew.eq("no", dataRoom.getNo());
+                        List<DataRoom> list = selectList(ew);
                         if (list!=null && list.size()>0){
                                 throw new SellException(ErrCode.FAIL,"该房间信息已存在！");
                         }
                 }
-                room.setCreateTime(new Date());
-                return insert(room);
+                dataRoom.setCreateTime(new Date());
+                return insert(dataRoom);
         }
 }
