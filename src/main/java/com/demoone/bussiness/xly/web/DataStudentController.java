@@ -1,10 +1,11 @@
 package com.demoone.bussiness.xly.web;
 
 
+import com.demoone.bussiness.xly.entity.DataCoach;
+import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.service.IDataStudentService;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
-import com.demoone.bussiness.xly.vo.StudentDropDown;
 import com.demoone.bussiness.xly.vo.StudentManagerHeadVo;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
@@ -46,7 +47,7 @@ public class DataStudentController {
 	}
 
 	@ApiOperation(value = "学员信息查询", notes = "学员信息查询")
-	@PostMapping("addStudent")
+	@PostMapping("queryStudent")
 	public OptResult queryStudentInfo(@RequestBody QueryStudentInfoVo queryStudentInfoVo) {
 		OptResult result = null;
 		result.setData(iDataStudentService.queryStudentInfo(queryStudentInfoVo));
@@ -55,9 +56,9 @@ public class DataStudentController {
 
 	@ApiOperation(value = "删除学员信息", notes = "删除学员信息")
 	@GetMapping("delete")
-	public OptResult delete(int id) {
+	public OptResult delete(int sid) {
 		OptResult result = null;
-		if (iDataStudentService.deleteById(id)){
+		if (iDataStudentService.deleteById(sid)){
 			result= OptResult.success();
 			result.setMsg("删除成功！");
 		}else {
@@ -121,15 +122,20 @@ public class DataStudentController {
 
 
 
-	@ApiOperation(value = "获取学员的下拉框", notes = "获取学员的下拉框",response = StudentDropDown.class)
-	@GetMapping("studentdropdown")
-	public OptResult StudentDropDown() {
+	@ApiOperation(value = "获取教练的下拉框", notes = "获取教练的下拉框",response = DataCoach.class)
+	@GetMapping("coachdropdown")
+	public OptResult coachDropDown() {
 		OptResult result =OptResult.success();
-		StudentDropDown studentDropDown = new StudentDropDown();
-		studentDropDown.setBasedropdown(iDataStudentService.baseDropDown());
-		studentDropDown.setCoachdropdown(iDataStudentService.coachDropDown());
-		studentDropDown.setRoomdropdown(iDataStudentService.roomDropDown());
-		result.setData(studentDropDown);
+		result.setData(iDataStudentService.coachDropDown());
+		return result;
+	}
+
+
+	@ApiOperation(value = "获取房间的下拉框", notes = "获取房间的下拉框",response = DataRoom.class)
+	@GetMapping("roomdropdown")
+	public OptResult roomDropDown() {
+		OptResult result =OptResult.success();
+		result.setData(iDataStudentService.roomDropDown());
 		return result;
 	}
 }

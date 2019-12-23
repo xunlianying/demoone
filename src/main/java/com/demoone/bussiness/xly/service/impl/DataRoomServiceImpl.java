@@ -2,10 +2,14 @@ package com.demoone.bussiness.xly.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.mapper.DataRoomDao;
 import com.demoone.bussiness.xly.service.IDataRoomService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.demoone.bussiness.xly.vo.CoachInfoVo;
+import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
+import com.demoone.bussiness.xly.vo.RoomInfoVo;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.utils.string.StringUtils;
@@ -37,5 +41,12 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                 }
                 dataRoom.setCreateTime(new Date());
                 return insert(dataRoom);
+        }
+
+        @Override
+        public Page<RoomInfoVo> queryRoomInfo(QueryRoomInfoVo queryRoomInfoVo) {
+                Page<RoomInfoVo> page = new Page<>(queryRoomInfoVo.getPage(),queryRoomInfoVo.getSize());
+                page.setRecords(baseMapper.queryRoomInfo(page,queryRoomInfoVo));
+                return page;
         }
 }

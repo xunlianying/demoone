@@ -5,7 +5,6 @@ import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.entity.Student;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.demoone.bussiness.xly.vo.Base;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentInfoVo;
 import org.apache.ibatis.annotations.Select;
@@ -57,12 +56,6 @@ public interface DataStudentDao extends BaseMapper<Student> {
 
 
     /*
-      * 获取基地下拉框数据
-      */
-    @Select("select b.bid,b.name from base b")
-    List<Base> baseDropDown();
-
-    /*
       * 获取教练下拉框数据
       */
     @Select("select c.cid,c.name from coach c")
@@ -71,7 +64,7 @@ public interface DataStudentDao extends BaseMapper<Student> {
     /*
   * 获取教练下拉框数据
   */
-    @Select("select r.no from room  r")
+    @Select("select r.rid,r.no from room  r")
     List<DataRoom> roomDropDown();
 
     List<StudentInfoVo> queryStudentInfo(Page page,QueryStudentInfoVo queryStudentInfoVo);

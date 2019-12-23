@@ -30,11 +30,32 @@
     <select id="queryStudentInfo" parameterType="com.demoone.bussiness.xly.vo.QueryStudentInfoVo" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
         select * from student
         <where>
-            <if test="sex!=null">
-                and gender=#{sex}
-            </if>
             <if test="name!=null and name!=''">
-                and naem=#{name}
+                and name=#{name}
+            </if>
+            <if test="gender!=null">
+                and gender=#{gender}
+            </if>
+            <if test="base!=null and base!=''">
+                and base=#{base}
+            </if>
+            <if test="joinTime!=null and joinTime!=''">
+                and join_time=#{joinTime}
+            </if>
+            <if test="leaveTime!=null and leaveTime!=''">
+                and leave_time=#{leaveTime}
+            </if>
+            <if test="sales!=null and sales!=''">
+                and sales=#{sales}
+            </if>
+            <if test="roomNo!=null and roomNo!=''">
+                and room_no=#{roomNo}
+            </if>
+            <if test="coachId!=null and coachId!=''">
+                and coach_id=#{coachId}
+            </if>
+            <if test="state!=null">
+                and state=#{state}
             </if>
 
         </where>

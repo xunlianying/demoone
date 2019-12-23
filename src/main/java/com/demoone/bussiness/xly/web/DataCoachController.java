@@ -3,6 +3,8 @@ package com.demoone.bussiness.xly.web;
 
 import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.service.IDataCoachService;
+import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
+import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
@@ -45,9 +47,9 @@ public class DataCoachController {
     @ApiOperation(value = "删除房间信息", notes = "删除房间信息")
     @GetMapping("delete")
     @ResponseBody
-    public OptResult queryCompInfoByCondition(int id) {
+    public OptResult queryCompInfoByCondition(int rid) {
         OptResult result = null;
-        if (iDataCoachService.deleteById(id)){
+        if (iDataCoachService.deleteById(rid)){
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
@@ -55,6 +57,12 @@ public class DataCoachController {
         }
         return result;
     }
-
+    @ApiOperation(value = "教练信息查询", notes = "教练信息查询")
+    @PostMapping("queryCoach")
+    public OptResult queryCoachInfo(@RequestBody QueryCoachInfoVo queryCoachInfoVo) {
+        OptResult result = null;
+        result.setData(iDataCoachService.queryCoachInfo(queryCoachInfoVo));
+        return result;
+    }
 
 }

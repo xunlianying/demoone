@@ -13,4 +13,20 @@
         <result column="modify_time" property="modifyTime" />
     </resultMap>
 
+
+
+
+    <select id="queryCoachInfo" parameterType="com.demoone.bussiness.xly.vo.QueryRoomInfoVo" resultType="com.demoone.bussiness.xly.vo.RoomInfoVo">
+        select * from Room
+        <where>
+            <if test="no!=null and no!=''">
+                and no=#{no}
+            </if>
+            <if test="state!=nulland state!=''">
+                and state=#{state}
+            </if>
+
+        </where>
+    </select>
+
 </mapper>

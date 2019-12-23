@@ -9,7 +9,6 @@ import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.mapper.DataStudentDao;
 import com.demoone.bussiness.xly.service.IDataStudentService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.demoone.bussiness.xly.vo.Base;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentInfoVo;
 import com.demoone.support.exception.SellException;
@@ -106,14 +105,7 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
         }
         return insert(student);
     }
-    /**.
-     *  获取基地下拉框数据
-     * @return  基地下拉框数据
-     */
-    @Override
-    public List<Base> baseDropDown() {
-        return  baseMapper.baseDropDown();
-    }
+
     /**.
      *  获取教练下拉框数据
      * @return  教练下拉框数据

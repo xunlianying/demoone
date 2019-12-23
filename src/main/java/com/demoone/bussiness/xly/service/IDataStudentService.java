@@ -5,7 +5,6 @@ import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.entity.Student;
 import com.baomidou.mybatisplus.service.IService;
-import com.demoone.bussiness.xly.vo.Base;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentInfoVo;
 
@@ -44,10 +43,6 @@ public interface IDataStudentService extends IService<Student> {
      *  添加学员信息
      */
     boolean addStudent(Student student);
-    /**
-     *  获取基地下拉框
-     */
-    List<Base> baseDropDown();
     /**
      *  获取教练下拉框
      */

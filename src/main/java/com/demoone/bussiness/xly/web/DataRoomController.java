@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.service.IDataRoomService;
+import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
+import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
 import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
@@ -51,9 +53,9 @@ public class DataRoomController {
     @ApiOperation(value = "删除房间信息", notes = "删除房间信息")
     @GetMapping("delete")
     @ResponseBody
-    public OptResult queryCompInfoByCondition(int id) {
+    public OptResult queryCompInfoByCondition(int cid) {
         OptResult result = null;
-        if (iDataRoomService.deleteById(id)){
+        if (iDataRoomService.deleteById(cid)){
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
@@ -84,6 +86,15 @@ public class DataRoomController {
         Page<DataRoom> pageRoom = new Page<>(page,size);
 
         result.setData(iDataRoomService.selectPage(pageRoom,ew));
+        return result;
+    }
+
+
+    @ApiOperation(value = "房间信息查询", notes = "房间信息查询")
+    @PostMapping("queryRoom")
+    public OptResult queryRoomInfo(@RequestBody QueryRoomInfoVo queryRoomInfoVo) {
+        OptResult result = null;
+        result.setData(iDataRoomService.queryRoomInfo(queryRoomInfoVo));
         return result;
     }
 }

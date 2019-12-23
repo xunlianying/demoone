@@ -2,10 +2,14 @@ package com.demoone.bussiness.xly.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.mapper.DataCoachDao;
 import com.demoone.bussiness.xly.service.IDataCoachService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.demoone.bussiness.xly.vo.CoachInfoVo;
+import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
+import com.demoone.bussiness.xly.vo.StudentInfoVo;
 import com.demoone.utils.string.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -36,5 +40,12 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
             }
         }
         return insert(dataCoach);
+    }
+
+    @Override
+    public Page<CoachInfoVo> queryCoachInfo(QueryCoachInfoVo queryCoachInfoVo) {
+        Page<CoachInfoVo> page = new Page<>(queryCoachInfoVo.getPage(),queryCoachInfoVo.getSize());
+        page.setRecords(baseMapper.queryCoachInfo(page,queryCoachInfoVo));
+        return page;
     }
 }
