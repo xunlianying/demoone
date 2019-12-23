@@ -1,9 +1,8 @@
 package com.demoone.utils;
 
 import com.demoone.data.entity.PhoneModel;
-import com.demoone.support.exception.SellException;
+import com.demoone.support.exception.BusinessException;
 import com.demoone.support.sys.ErrCode;
-import com.demoone.support.sys.OptResult;
 import com.google.i18n.phonenumbers.PhoneNumberToCarrierMapper;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
@@ -55,7 +54,7 @@ public class PhoneUtil {
 
 			return phoneNumberUtil.isValidNumber(pn);
 		}
-		throw new SellException(ErrCode.ILLEGAL_PARAM);
+		throw new BusinessException(ErrCode.ILLEGAL_PARAM);
 
 	}
 
@@ -150,7 +149,7 @@ public class PhoneUtil {
 				return phoneModel;
 			}
 		}else {
-			throw new SellException(9999,"该号码无效");
+			throw new BusinessException(9999,"该号码无效");
 		}
 		return null;
 	}

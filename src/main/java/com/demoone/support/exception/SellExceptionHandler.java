@@ -24,8 +24,8 @@ public class SellExceptionHandler {
 
 
 	//运行时异常
-	@ExceptionHandler(SellException.class)
-	public OptResult runtimeExceptionHandler(SellException ex) {
+	@ExceptionHandler(BusinessException.class)
+	public OptResult runtimeExceptionHandler(BusinessException ex) {
 		ex.printStackTrace();
 		return new OptResult(ex.getMessage(),ex.getCode());
 	}

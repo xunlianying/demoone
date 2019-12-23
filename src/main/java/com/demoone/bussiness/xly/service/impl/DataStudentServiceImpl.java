@@ -11,7 +11,7 @@ import com.demoone.bussiness.xly.service.IDataStudentService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentInfoVo;
-import com.demoone.support.exception.SellException;
+import com.demoone.support.exception.BusinessException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.utils.string.StringUtils;
 import org.springframework.stereotype.Service;
@@ -81,10 +81,10 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
             ew.eq("id_no",student.getSid());
             List<Student> list = selectList(ew);
             if (list!=null && list.size()>0){
-                throw new SellException(ErrCode.FAIL,"该学员信息已存在！");
+                throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
             }
         }else{
-            throw  new SellException(ErrCode.FAIL,"身份证号不能为空！");
+            throw  new BusinessException(ErrCode.FAIL,"身份证号不能为空！");
         }
 
         student.setCreateTime(new Date());

@@ -2,15 +2,14 @@ package com.demoone.bussiness.xly.service.impl;
 
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
-import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.mapper.DataRoomDao;
 import com.demoone.bussiness.xly.service.IDataRoomService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.demoone.support.exception.BusinessException;
 import com.demoone.bussiness.xly.vo.CoachInfoVo;
 import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
 import com.demoone.bussiness.xly.vo.RoomInfoVo;
-import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.utils.string.StringUtils;
 import org.springframework.stereotype.Service;
@@ -36,7 +35,7 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                         ew.eq("no", dataRoom.getNo());
                         List<DataRoom> list = selectList(ew);
                         if (list!=null && list.size()>0){
-                                throw new SellException(ErrCode.FAIL,"该房间信息已存在！");
+                                throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
                         }
                 }
                 dataRoom.setCreateTime(new Date());

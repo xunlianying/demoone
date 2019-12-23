@@ -3,9 +3,8 @@ package com.demoone.bussiness.xly.web;
 
 import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.service.IDataCoachService;
+import com.demoone.support.exception.BusinessException;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
-import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
-import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import io.swagger.annotations.Api;
@@ -40,7 +39,7 @@ public class DataCoachController {
             result= OptResult.success();
             result.setMsg("添加成功！");
         }else {
-            throw new SellException(ErrCode.FAIL,"添加失败！");
+            throw new BusinessException(ErrCode.FAIL,"添加失败！");
         }
         return result;
     }
@@ -53,7 +52,7 @@ public class DataCoachController {
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
-            throw new SellException(ErrCode.FAIL,"删除教练失败！");
+            throw new BusinessException(ErrCode.FAIL,"删除教练失败！");
         }
         return result;
     }

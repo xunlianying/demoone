@@ -7,7 +7,7 @@ import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.service.IDataStudentService;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentManagerHeadVo;
-import com.demoone.support.exception.SellException;
+import com.demoone.support.exception.BusinessException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import io.swagger.annotations.Api;
@@ -62,7 +62,7 @@ public class DataStudentController {
 			result= OptResult.success();
 			result.setMsg("删除成功！");
 		}else {
-			throw new SellException(ErrCode.FAIL,"删除学员失败！");
+			throw new BusinessException(ErrCode.FAIL,"删除学员失败！");
 		}
 		return result;
 	}
@@ -89,7 +89,7 @@ public class DataStudentController {
 			result= OptResult.success();
 			result.setMsg("停止学员周期成功！");
 		}else {
-			throw new SellException(ErrCode.FAIL,"停止学员周期失败！");
+			throw new BusinessException(ErrCode.FAIL,"停止学员周期失败！");
 		}
 		return result;
 	}
@@ -103,7 +103,7 @@ public class DataStudentController {
 			result= OptResult.success();
 			result.setMsg("减学员天数成功！");
 		}else {
-			throw new SellException(ErrCode.FAIL,"减学员天数失败！");
+			throw new BusinessException(ErrCode.FAIL,"减学员天数失败！");
 		}
 		return result;
 	}

@@ -14,20 +14,21 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SellException extends RuntimeException{
+public class BusinessException extends RuntimeException{
 
 
 	private Integer code;
 
 	private String message;
 
-	public SellException(ErrCode errCode){
+	public BusinessException(ErrCode errCode){
 		this.code = errCode.getCode();
 		this.message = errCode.getMessage();
 	}
 
-	public SellException(ErrCode errCode,String message){
+	public BusinessException(ErrCode errCode, String message){
 		this.code = errCode.getCode();
 		this.message = message;
 	}
+
 }

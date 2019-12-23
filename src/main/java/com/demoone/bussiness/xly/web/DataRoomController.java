@@ -5,9 +5,9 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.service.IDataRoomService;
+import com.demoone.support.exception.BusinessException;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
 import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
-import com.demoone.support.exception.SellException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import com.demoone.utils.string.StringUtils;
@@ -59,7 +59,7 @@ public class DataRoomController {
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
-            throw new SellException(ErrCode.FAIL,"删除房间失败！");
+            throw new BusinessException(ErrCode.FAIL,"删除房间失败！");
         }
         return result;
     }
