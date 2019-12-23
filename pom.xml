@@ -24,6 +24,7 @@
         <springfox.swagger.version>2.6.1</springfox.swagger.version>
         <commons.lang3.version>3.5</commons.lang3.version>
         <pinyin4j.version>2.5.1</pinyin4j.version>
+        <maven-resources-plugin.version>3.0.2</maven-resources-plugin.version>
     </properties>
 
     <dependencies>
@@ -146,6 +147,17 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <filtering>false</filtering>
+                <includes>
+                    <include>com/demoone/**/**/mapper/xml/*.xml</include>
+                    <include>com/demoone/**/mapper/xml/*.xml</include>
+                </includes>
+            </resource>
+        </resources>
+
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -163,6 +175,34 @@
                     <meminitial>512m</meminitial>
                     <maxmem>1048m</maxmem>
                 </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>target/classes</outputDirectory>
+                            <useDefaultDelimiters>false</useDefaultDelimiters>
+                            <delimiters>
+                                <delimiter>#</delimiter>
+                            </delimiters>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/resources/</directory>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

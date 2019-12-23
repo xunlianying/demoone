@@ -47,7 +47,7 @@ public class DataStudentController {
 	}
 
 	@ApiOperation(value = "学员信息查询", notes = "学员信息查询")
-	@PostMapping("queryStudent")
+	@PostMapping("queryStudentInfo")
 	public OptResult queryStudentInfo(@RequestBody QueryStudentInfoVo queryStudentInfoVo) {
 		OptResult result = null;
 		result.setData(iDataStudentService.queryStudentInfo(queryStudentInfoVo));

@@ -2,17 +2,12 @@ server:
     port: 8081
     tomcat: uri-encoding=UTF-8
 spring:
-  datasource:
-         name: demoone
-         type: com.alibaba.druid.pool.DruidDataSource
-         url: jdbc:mariadb://127.0.0.1:3306/seven
-         username: root
-         password: root
-         driver-class-name: org.mariadb.jdbc.Driver # mariad
+  profiles:
+    active: pre
 
 mybatis-plus:
   mapper-locations: classpath:com/demoone/**/mapper/xml/*.xml
-  type-aliases-package: com.yuntucredit.common.entity,com.yuntucredit.usercenter.entity,com.yuntucredit.support.entity
+  type-aliases-package: com.demoone.common.entity,com.demoone.usercenter.entity,com.demoone.support.entity
 
   global-config:
     #主键类型  0:"数据库ID自增", 1:"用户输入ID",2:"全局唯一ID (数字类型唯一ID)", 3:"全局唯一ID UUID";

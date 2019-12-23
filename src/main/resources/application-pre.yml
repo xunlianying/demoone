@@ -1,0 +1,47 @@
+# 预发布环境 请勿随意修改提交 如有变量需要提交请联系运维管理员 联系运维管理员 联系运维管理员 联系运维管理员
+server:
+    port: 8083
+    tomcat: uri-encoding=UTF-8
+spring:
+    datasource:
+        name: demoone
+        type: com.alibaba.druid.pool.DruidDataSource
+        url: jdbc:mariadb://39.100.145.68:3306/seven
+        username: root
+        password: seven123.
+        driver-class-name: org.mariadb.jdbc.Driver # mariad
+        # JDBC 事务隔离级别
+        # 四种隔离级别：
+        # 1 TRANSACTION_READ_UNCOMMITTED 最底级别：只保证不会读到非法数据，上述3个问题有可能发生
+        # 2 TRANSACTION_READ_COMMITTED) 默认级别：可以防止脏读
+        # 4 TRANSACTION_REPEATABLE_READ) 可以防止脏读和不可重复读取
+        # 8 TRANSACTION_SERIALIZABLE) 最高级别：防止上述3种情况，事务串行执行
+        # 0 TRANSACTION_NONE
+        defaultTransactionIsolation: 2
+        druid:
+          minIdle: 1
+          # 初始化大小，最大
+          initialSize: 1
+          maxActive: 20
+          # 配置获取连接等待超时的时间
+          maxWait: 60000
+          # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+          timeBetweenEvictionRunsMillis: 3000
+          # 配置一个连接在池中最小生存的时间，单位是毫秒
+          minEvictableIdleTimeMillis: 300000
+          validationQuery: SELECT 1
+          testWhileIdle: true
+          testOnBorrow: false
+          testOnReturn: false
+          # 打开PSCache，并且指定每个连接上PSCache的大小
+          poolPreparedStatements: true
+          maxPoolPreparedStatementPerConnectionSize: 20
+          # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+          # filters: stat,wall,log4j
+          filters: stat,log4j
+          # 通过connectProperties属性来打开mergeSql功能；慢SQL记录
+          connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;druid.filter.wall.config.conditionAndAlwayFalseAllow=false;
+          # 物理连接初始化的时候执行的sql
+          connectionInitSqls:
+          # 合并多个DruidDataSource的监控数据
+          # useGlobalDataSourceStat: true
