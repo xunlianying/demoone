@@ -53,4 +53,8 @@ public interface IDataStudentService extends IService<Student> {
     List<DataRoom> roomDropDown();
 
     Page<StudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo);
+
+    boolean updateStudent(Student student);
+
+    boolean deleteStudent(String sid);
 }

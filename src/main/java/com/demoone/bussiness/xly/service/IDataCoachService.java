@@ -19,4 +19,8 @@ public interface IDataCoachService extends IService<DataCoach> {
     boolean addCoach(DataCoach dataCoach);
 
     Page<CoachInfoVo> queryCoachInfo(QueryCoachInfoVo queryCoachInfoVo);
+
+    boolean updateCoach(DataCoach dataCoach);
+
+    boolean deleteCoach(String cid);
 }

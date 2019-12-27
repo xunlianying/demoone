@@ -19,4 +19,8 @@ public interface IDataRoomService extends IService<DataRoom> {
     boolean addRoom(DataRoom dataRoom);
 
     Page<RoomInfoVo> queryRoomInfo(QueryRoomInfoVo queryRoomInfoVo);
+
+    boolean updateRoom(DataRoom dataRoom);
+
+    boolean deleteRoom(String rid);
 }

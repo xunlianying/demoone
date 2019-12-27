@@ -1,10 +1,14 @@
 package com.demoone.bussiness.xly.web;
 
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.demoone.bussiness.xly.entity.DataCoach;
+import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.service.IDataCoachService;
 import com.demoone.support.exception.BusinessException;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
+import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import io.swagger.annotations.Api;
@@ -30,7 +34,7 @@ public class DataCoachController {
     @Autowired
     private IDataCoachService iDataCoachService;
 
-    @ApiOperation(value = "批量增加教练信息", notes = "批量增加教练信息")
+    @ApiOperation(value = "增加教练信息", notes = "增加教练信息")
     @PostMapping("addCoach")
     @ResponseBody
     public OptResult addCoach(@RequestBody DataCoach dataCoach) {
@@ -43,12 +47,12 @@ public class DataCoachController {
         }
         return result;
     }
-    @ApiOperation(value = "删除房间信息", notes = "删除房间信息")
+    @ApiOperation(value = "删除教练信息", notes = "删除删除信息")
     @GetMapping("delete")
     @ResponseBody
-    public OptResult queryCompInfoByCondition(int rid) {
+    public OptResult delete(String cid) {
         OptResult result = null;
-        if (iDataCoachService.deleteById(rid)){
+        if (iDataCoachService.deleteCoach(cid)){
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
@@ -59,8 +63,23 @@ public class DataCoachController {
     @ApiOperation(value = "教练信息查询", notes = "教练信息查询")
     @PostMapping("queryCoach")
     public OptResult queryCoachInfo(@RequestBody QueryCoachInfoVo queryCoachInfoVo) {
-        OptResult result = null;
+        OptResult result = OptResult.success();
         result.setData(iDataCoachService.queryCoachInfo(queryCoachInfoVo));
+        return result;
+    }
+
+
+    @ApiOperation(value = "修改教练信息", notes = "修改教练信息")
+    @PostMapping("updateCoach")
+    public OptResult updateCoach(@RequestBody DataCoach dataCoach) {
+        OptResult result = null;
+        if (iDataCoachService.updateCoach(dataCoach)){
+            result= OptResult.success();
+            result.setMsg("修改成功!");
+        }else {
+            result= OptResult.fail();
+            result.setMsg("修改失败，请稍后再试!");
+        }
         return result;
     }
 

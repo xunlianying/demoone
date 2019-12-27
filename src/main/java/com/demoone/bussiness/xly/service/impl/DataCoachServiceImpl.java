@@ -10,6 +10,8 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.demoone.bussiness.xly.vo.CoachInfoVo;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
 import com.demoone.bussiness.xly.vo.StudentInfoVo;
+import com.demoone.support.exception.BusinessException;
+import com.demoone.support.sys.ErrCode;
 import com.demoone.utils.string.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -29,13 +31,19 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
 
     @Override
     public boolean addCoach(DataCoach dataCoach) {
+        Wrapper<DataCoach> ew = new EntityWrapper();
+        ew.eq("cid",dataCoach.getCid());
+        List<DataCoach> list = selectList(ew);
+        if (list!=null && list.size()>0){
+            throw new BusinessException(ErrCode.FAIL,"该教练信息已存在！");
+        }
         dataCoach.setCreateTime(new Date());
         dataCoach.setCid("C"+StringUtils.getRandomNumber(6));
         for(int i=0;i<-1;i++){
-            Wrapper<DataCoach> ew = new EntityWrapper();
-            ew.eq("cid", dataCoach.getCid());
-            List<DataCoach> list = selectList(ew);
-            if (list==null || list.size()<1){
+            Wrapper<DataCoach> ew1 = new EntityWrapper();
+            ew1.eq("cid", dataCoach.getCid());
+            List<DataCoach> list1 = selectList(ew1);
+            if (list1==null || list1.size()<1){
                 break;
             }
         }
@@ -47,5 +55,18 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
         Page<CoachInfoVo> page = new Page<>(queryCoachInfoVo.getPage(),queryCoachInfoVo.getSize());
         page.setRecords(baseMapper.queryCoachInfo(page,queryCoachInfoVo));
         return page;
+    }
+
+    @Override
+    public boolean updateCoach(DataCoach dataCoach) {
+        Wrapper<DataCoach> ew = new EntityWrapper();
+        ew.eq("cid",dataCoach.getCid());
+        dataCoach.setModifyTime(new Date());
+        return update(dataCoach,ew);
+    }
+
+    @Override
+    public boolean deleteCoach(String cid) {
+        return baseMapper.deleteCoach(cid);
     }
 }

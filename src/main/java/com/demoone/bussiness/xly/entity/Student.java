@@ -24,7 +24,7 @@ import java.util.List;
  * @since 2019-12-06
  */
 @ApiModel("学员类")
-@TableName("student")
+@TableName("data_student")
 @Data
 @ToString
 public class Student extends Model<Student> {

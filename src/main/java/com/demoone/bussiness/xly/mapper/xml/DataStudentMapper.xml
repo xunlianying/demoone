@@ -28,7 +28,7 @@
 
 
     <select id="queryStudentInfo" parameterType="com.demoone.bussiness.xly.vo.QueryStudentInfoVo" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
-        select * from student
+        select * from data_student
         <where>
             <if test="name!=null and name!=''">
                 and name=#{name}

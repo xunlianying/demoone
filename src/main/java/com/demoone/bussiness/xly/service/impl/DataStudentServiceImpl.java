@@ -78,7 +78,7 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
     public boolean addStudent(Student student) {
         if (StringUtils.isNotBlank(student.getIdNo())){
             Wrapper<Student> ew = new EntityWrapper();
-            ew.eq("id_no",student.getSid());
+            ew.eq("sid",student.getSid());
             List<Student> list = selectList(ew);
             if (list!=null && list.size()>0){
                 throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
@@ -123,10 +123,33 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
         return  baseMapper.roomDropDown();
     }
 
+
+    /**.
+     *  根据条件查询学员信息
+     * @param
+     * @return  学员的信息
+     */
     @Override
     public Page<StudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo) {
         Page<StudentInfoVo> page = new Page<>(queryStudentInfoVo.getPage(),queryStudentInfoVo.getSize());
         page.setRecords(baseMapper.queryStudentInfo(page,queryStudentInfoVo));
         return page;
+    }
+    /**.
+     *  修改学员信息
+     * @param
+     * @return
+     */
+    @Override
+    public boolean updateStudent(Student student) {
+        Wrapper<Student> ew = new EntityWrapper();
+        ew.eq("sid",student.getSid());
+        student.setModifyTime(new Date());
+        return update(student,ew);
+    }
+
+    @Override
+    public boolean deleteStudent(String sid) {
+        return baseMapper.deleteStudent(sid);
     }
 }

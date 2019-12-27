@@ -3,7 +3,7 @@ server:
     tomcat: uri-encoding=UTF-8
 spring:
   profiles:
-    active: pre
+    active: dev
 
 mybatis-plus:
   mapper-locations: classpath:com/demoone/**/mapper/xml/*.xml

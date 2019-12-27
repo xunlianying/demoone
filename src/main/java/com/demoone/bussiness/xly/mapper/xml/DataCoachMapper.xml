@@ -17,7 +17,7 @@
 
 
     <select id="queryCoachInfo" parameterType="com.demoone.bussiness.xly.vo.QueryCoachInfoVo" resultType="com.demoone.bussiness.xly.vo.CoachInfoVo">
-        select * from Coach
+        select * from data_coach
         <where>
             <if test="name!=null and name!=''">
                 and name=#{name}
@@ -28,7 +28,7 @@
             <if test="position!=null and position!=''">
                 and position=#{position}
             </if>
-            <if test="state!=nulland state!=''">
+            <if test="state!=null and state!=''">
                 and state=#{state}
             </if>
 

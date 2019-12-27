@@ -49,14 +49,14 @@ public class DataStudentController {
 	@ApiOperation(value = "学员信息查询", notes = "学员信息查询")
 	@PostMapping("queryStudentInfo")
 	public OptResult queryStudentInfo(@RequestBody QueryStudentInfoVo queryStudentInfoVo) {
-		OptResult result = null;
+		OptResult result = OptResult.success();
 		result.setData(iDataStudentService.queryStudentInfo(queryStudentInfoVo));
 		return result;
 	}
 
 	@ApiOperation(value = "删除学员信息", notes = "删除学员信息")
 	@GetMapping("delete")
-	public OptResult delete(int sid) {
+	public OptResult delete(String sid) {
 		OptResult result = null;
 		if (iDataStudentService.deleteById(sid)){
 			result= OptResult.success();
@@ -138,4 +138,19 @@ public class DataStudentController {
 		result.setData(iDataStudentService.roomDropDown());
 		return result;
 	}
+
+	@ApiOperation(value = "修改学员信息", notes = "修改学员信息")
+	@PostMapping("updateStudent")
+	public OptResult updateStudent(@RequestBody Student student) {
+		OptResult result = null;
+		if (iDataStudentService.updateStudent(student)){
+			result= OptResult.success();
+			result.setMsg("修改成功!");
+		}else {
+			result= OptResult.fail();
+			result.setMsg("修改失败，请稍后再试!");
+		}
+		return result;
+	}
+
 }

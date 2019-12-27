@@ -53,9 +53,9 @@ public class DataRoomController {
     @ApiOperation(value = "删除房间信息", notes = "删除房间信息")
     @GetMapping("delete")
     @ResponseBody
-    public OptResult queryCompInfoByCondition(int cid) {
+    public OptResult delete(String rid) {
         OptResult result = null;
-        if (iDataRoomService.deleteById(cid)){
+        if (iDataRoomService.deleteRoom(rid)){
             result= OptResult.success();
             result.setMsg("删除成功！");
         }else {
@@ -95,6 +95,21 @@ public class DataRoomController {
     public OptResult queryRoomInfo(@RequestBody QueryRoomInfoVo queryRoomInfoVo) {
         OptResult result = null;
         result.setData(iDataRoomService.queryRoomInfo(queryRoomInfoVo));
+        return result;
+    }
+
+
+    @ApiOperation(value = "修改房间信息", notes = "修改房间信息")
+    @PostMapping("updateRoom")
+    public OptResult updateRoom(@RequestBody DataRoom dataRoom) {
+        OptResult result = null;
+        if (iDataRoomService.updateRoom(dataRoom)){
+            result= OptResult.success();
+            result.setMsg("修改成功!");
+        }else {
+            result= OptResult.fail();
+            result.setMsg("修改失败，请稍后再试!");
+        }
         return result;
     }
 }

@@ -5,6 +5,7 @@ import com.demoone.bussiness.xly.entity.DataCoach;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.demoone.bussiness.xly.vo.CoachInfoVo;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
+import org.apache.ibatis.annotations.Delete;
 
 import java.util.List;
 
@@ -19,4 +20,7 @@ import java.util.List;
 public interface DataCoachDao extends BaseMapper<DataCoach> {
 
     List<CoachInfoVo> queryCoachInfo(Page<CoachInfoVo> page, QueryCoachInfoVo queryCoachInfoVo);
+
+    @Delete("delete  from  data_coach  where cid=#{cid} ")
+    boolean deleteCoach(String rid);
 }
