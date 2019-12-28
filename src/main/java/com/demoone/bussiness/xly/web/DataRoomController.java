@@ -93,7 +93,7 @@ public class DataRoomController {
     @ApiOperation(value = "房间信息查询", notes = "房间信息查询")
     @PostMapping("queryRoom")
     public OptResult queryRoomInfo(@RequestBody QueryRoomInfoVo queryRoomInfoVo) {
-        OptResult result = null;
+        OptResult result = OptResult.success();
         result.setData(iDataRoomService.queryRoomInfo(queryRoomInfoVo));
         return result;
     }

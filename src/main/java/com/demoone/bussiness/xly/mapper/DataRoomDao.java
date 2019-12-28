@@ -23,7 +23,7 @@ public interface DataRoomDao extends BaseMapper<DataRoom> {
 
     List<RoomInfoVo> queryRoomInfo(Page<RoomInfoVo> page, QueryRoomInfoVo queryRoomInfoVo);
 
-    List<Student> queryRoomNo(String rid);
+    List<Student> queryRoomNo(DataRoom dataRoom);
 
     @Delete("delete  from  data_room  where rid=#{rid} ")
     boolean deleteRoom(String rid);

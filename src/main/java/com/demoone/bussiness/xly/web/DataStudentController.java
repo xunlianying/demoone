@@ -58,7 +58,7 @@ public class DataStudentController {
 	@GetMapping("delete")
 	public OptResult delete(String sid) {
 		OptResult result = null;
-		if (iDataStudentService.deleteById(sid)){
+		if (iDataStudentService.deleteStudent(sid)){
 			result= OptResult.success();
 			result.setMsg("删除成功！");
 		}else {

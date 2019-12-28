@@ -47,8 +47,7 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                                 break;
                         }
                 }
-              String rid=dataRoom.getRid();
-                List<Student> listStudent = baseMapper.queryRoomNo(rid);
+                List<Student> listStudent = baseMapper.queryRoomNo(dataRoom);
                 if (listStudent==null || listStudent.size()<1){
                         dataRoom.setExistingNum(0);
                         dataRoom.setState("1");//未住满

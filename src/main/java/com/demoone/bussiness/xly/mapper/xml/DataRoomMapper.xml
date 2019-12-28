@@ -16,17 +16,26 @@
 
 
 
-    <select id="queryCoachInfo" parameterType="com.demoone.bussiness.xly.vo.QueryRoomInfoVo" resultType="com.demoone.bussiness.xly.vo.RoomInfoVo">
-        select * from Room
+    <select id="queryRoomInfo" parameterType="com.demoone.bussiness.xly.vo.QueryRoomInfoVo" resultType="com.demoone.bussiness.xly.vo.RoomInfoVo">
+        select * from data_room
         <where>
             <if test="no!=null and no!=''">
                 and no=#{no}
             </if>
-            <if test="state!=nulland state!=''">
+            <if test="state!=null and state!=''">
                 and state=#{state}
             </if>
 
         </where>
     </select>
 
+
+    <select id="queryRoomNo" parameterType="com.demoone.bussiness.xly.entity.DataRoom" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
+        select * from data_student
+        <where>
+            <if test="rid!=null and rid!='' ">
+                and room_no=#{rid}
+            </if>
+        </where>
+    </select>
 </mapper>
