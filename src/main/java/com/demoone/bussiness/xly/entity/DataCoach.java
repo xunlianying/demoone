@@ -53,6 +53,9 @@ public class DataCoach extends Model<DataCoach> {
     @ApiModelProperty("教练联系方式")
     private String phone;
 
+    @ApiModelProperty("删除状态，0，显示，1 删除")
+    private Integer deleteState;
+
     @Override
     protected Serializable pkVal() {
         return this.cid;

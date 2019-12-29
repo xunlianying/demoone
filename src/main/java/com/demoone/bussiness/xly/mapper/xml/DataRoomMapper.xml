@@ -11,6 +11,7 @@
         <result column="existing_num" property="existingNum" />
         <result column="create_time" property="createTime" />
         <result column="modify_time" property="modifyTime" />
+        <result column="delete_state" property="deleteState" />
     </resultMap>
 
 
@@ -19,6 +20,7 @@
     <select id="queryRoomInfo" parameterType="com.demoone.bussiness.xly.vo.QueryRoomInfoVo" resultType="com.demoone.bussiness.xly.vo.RoomInfoVo">
         select * from data_room
         <where>
+            delete_state=0
             <if test="no!=null and no!=''">
                 and no=#{no}
             </if>
@@ -33,6 +35,7 @@
     <select id="queryRoomNo" parameterType="com.demoone.bussiness.xly.entity.DataRoom" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
         select * from data_student
         <where>
+            delete_state=0
             <if test="rid!=null and rid!='' ">
                 and room_no=#{rid}
             </if>
@@ -42,6 +45,7 @@
     <select id="queryRoomNoList" parameterType="com.demoone.bussiness.xly.entity.DataRoom" resultType="com.demoone.bussiness.xly.entity.DataRoom">
         select * from data_room
         <where>
+            delete_state=0
             <if test="no!=null and no!=''">
                 and no=#{no}
             </if>

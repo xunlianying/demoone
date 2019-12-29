@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : 127.0.0.1
-Source Server Version : 50722
-Source Host           : 127.0.0.1:3306
-Source Database       : seven
+Source Server         : aly_seven
+Source Server Version : 50728
+Source Host           : 39.100.145.68:3306
+Source Database       : seven_test
 
 Target Server Type    : MYSQL
-Target Server Version : 50722
+Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2019-12-22 21:22:21
+Date: 2019-12-29 21:12:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3339,12 +3339,10 @@ CREATE TABLE `data_coach` (
   `phone` varchar(15) DEFAULT NULL COMMENT '教练联系方式',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `delete_state` int(2) DEFAULT NULL COMMENT '删除状态，0，显示，1 删除',
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='教练信息表';
 
--- ----------------------------
--- Records of data_coach
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for data_file_pic
@@ -3436,11 +3434,10 @@ CREATE TABLE `data_room` (
   `existing_num` int(11) DEFAULT NULL COMMENT '已经入住人数',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+  `delete_state` int(2) DEFAULT NULL COMMENT '删除状态，0，显示，1 删除',
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- ----------------------------
--- Records of data_room
 -- ----------------------------
 
 -- ----------------------------
@@ -3458,25 +3455,19 @@ CREATE TABLE `data_student` (
   `sales` varchar(32) DEFAULT NULL COMMENT '销售（谁招收的学员）',
   `total_day` int(4) DEFAULT NULL COMMENT '总天数',
   `surplus_day` int(4) DEFAULT NULL COMMENT '剩余天数',
-  `room_id` int(11) DEFAULT NULL COMMENT '房间id room表id',
   `room_no` varchar(30) DEFAULT NULL COMMENT '房间编号',
   `coach_id` varchar(128) DEFAULT NULL COMMENT '所属教练',
   `cost` decimal(10,2) DEFAULT NULL COMMENT '所交费用',
   `join_weight` double(10,2) DEFAULT NULL COMMENT '入营体重',
   `leave_weight` double(10,0) DEFAULT NULL COMMENT '离营体重',
-  `state` int(2) DEFAULT NULL COMMENT '学员状态',
+  `state` int(2) DEFAULT NULL COMMENT '学员状态，0，在营，1 离营',
+  `delete_state` int(2) DEFAULT NULL COMMENT '删除状态，0，显示，1 删除',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
   `phone` varchar(15) DEFAULT NULL COMMENT '学员联系方式',
   PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
--- ----------------------------
--- Records of data_student
--- ----------------------------
-INSERT INTO `data_student` VALUES ('string1', 'string', '0', 'string', 'string', '2019-12-08', '2019-12-08', 'string', '48', '37', '0', 'string', 'string', '0.00', '0.00', '0', '1', '2019-12-08 21:30:43', '2019-12-08 21:30:43', null);
-INSERT INTO `data_student` VALUES ('string2', 'string', '0', 'string', 'string', '2019-12-08', '2019-12-08', 'string', '18', '9', '0', 'string', 'string', '0.00', '0.00', '0', '0', '2019-12-08 21:45:04', '2019-12-08 21:45:04', null);
-INSERT INTO `data_student` VALUES ('string3', 'string', '0', 'string', 'string', '2019-12-09', '2019-12-09', 'string', '0', '0', '0', 'string', 'string', '0.00', '0.00', '0', '0', '2019-12-09 22:00:47', '2019-12-09 22:00:47', null);
 
 -- ----------------------------
 -- Table structure for sys_file

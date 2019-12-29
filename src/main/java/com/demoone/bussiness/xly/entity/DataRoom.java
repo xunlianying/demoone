@@ -52,6 +52,9 @@ public class DataRoom extends Model<DataRoom> {
     @TableField("modify_time")
     private Date modifyTime;
 
+    @ApiModelProperty("删除状态，0，显示，1 删除")
+    private Integer deleteState;
+
     @Override
     protected Serializable pkVal() {
         return this.rid;

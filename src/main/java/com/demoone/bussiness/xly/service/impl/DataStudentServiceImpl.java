@@ -95,6 +95,7 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
 
         student.setCreateTime(new Date());
         student.setModifyTime(new Date());
+        student.setDeleteState(0);
         student.setSid("S"+StringUtils.getRandomNumber(6));
         for(int i=0;i<-1;i++){
             Wrapper<Student> ew = new EntityWrapper();

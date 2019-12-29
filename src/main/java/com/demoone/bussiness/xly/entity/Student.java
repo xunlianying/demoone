@@ -68,10 +68,6 @@ public class Student extends Model<Student> {
     @TableField("surplus_day")
     private Integer surplusDay;
 
-    @ApiModelProperty("房间id room表id")
-    @TableField("room_id")
-    private Integer roomId;
-
     @ApiModelProperty("房间编号")
     @TableField("room_no")
     private String roomNo;
@@ -93,6 +89,10 @@ public class Student extends Model<Student> {
 
     @ApiModelProperty("学员状态，0，在营，1 离营")
     private Integer state;
+
+
+    @ApiModelProperty("删除状态，0，显示，1 删除")
+    private Integer deleteState;
 
     @ApiModelProperty("创建时间")
     @TableField("create_time")

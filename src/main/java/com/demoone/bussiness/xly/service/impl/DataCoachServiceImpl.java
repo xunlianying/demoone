@@ -39,6 +39,7 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
         }
         dataCoach.setCreateTime(new Date());
         dataCoach.setModifyTime(new Date());
+        dataCoach.setDeleteState(0);
         dataCoach.setCid("C"+StringUtils.getRandomNumber(6));
         for(int i=0;i<-1;i++){
             Wrapper<DataCoach> ew1 = new EntityWrapper();

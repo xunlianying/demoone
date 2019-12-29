@@ -46,6 +46,7 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                 }
                 dataRoom.setCreateTime(new Date());
                 dataRoom.setModifyTime(new Date());
+                dataRoom.setDeleteState(0);
                 dataRoom.setRid("R"+StringUtils.getRandomNumber(6));
                 for(int i=0;i<-1;i++){
                         Wrapper<DataRoom> ew1 = new EntityWrapper();

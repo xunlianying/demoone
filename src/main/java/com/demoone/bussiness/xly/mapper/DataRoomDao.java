@@ -7,6 +7,7 @@ import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
 import com.demoone.bussiness.xly.vo.RoomInfoVo;
 import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public interface DataRoomDao extends BaseMapper<DataRoom> {
 
     List<Student> queryRoomNo(DataRoom dataRoom);
 
-    @Delete("delete  from  data_room  where rid=#{rid} ")
+    @Update("update data_room set delete_state='1' where rid=#{rid} ")
     boolean deleteRoom(String rid);
 
     List<DataRoom> queryRoomNoList(DataRoom dataRoom);
