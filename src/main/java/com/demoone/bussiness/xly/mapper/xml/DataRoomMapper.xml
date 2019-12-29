@@ -38,4 +38,13 @@
             </if>
         </where>
     </select>
+
+    <select id="queryRoomNoList" parameterType="com.demoone.bussiness.xly.entity.DataRoom" resultType="com.demoone.bussiness.xly.entity.DataRoom">
+        select * from data_room
+        <where>
+            <if test="no!=null and no!=''">
+                and no=#{no}
+            </if>
+        </where>
+    </select>
 </mapper>

@@ -31,13 +31,21 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
 
         @Override
         public boolean addRoom(DataRoom dataRoom) {
+                if (dataRoom.getFullNum()==null||dataRoom.getFullNum()==0){
+                        throw new BusinessException(ErrCode.FAIL,"必须标注房间是几人间！");
+                }
                 Wrapper<DataRoom> ew = new EntityWrapper();
                 ew.eq("rid",dataRoom.getRid());
                 List<DataRoom> list = selectList(ew);
                 if (list!=null && list.size()>0){
                         throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
                 }
+                List<DataRoom> RoomNoList = baseMapper.queryRoomNoList(dataRoom);
+                if (RoomNoList!=null && RoomNoList.size()>0){
+                        throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
+                }
                 dataRoom.setCreateTime(new Date());
+                dataRoom.setModifyTime(new Date());
                 dataRoom.setRid("R"+StringUtils.getRandomNumber(6));
                 for(int i=0;i<-1;i++){
                         Wrapper<DataRoom> ew1 = new EntityWrapper();
@@ -54,7 +62,7 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                 }else if (listStudent.size()<dataRoom.getFullNum()){
                         dataRoom.setExistingNum(listStudent.size());
                         dataRoom.setState("1");//未住满
-                }else if (listStudent.size()==dataRoom.getFullNum()){
+                }else if (listStudent.size()==dataRoom.getFullNum()||listStudent.size()>dataRoom.getFullNum()){
                         throw new BusinessException(ErrCode.FAIL,"该房间已经住满！");
                 }
                 return insert(dataRoom);

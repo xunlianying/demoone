@@ -83,9 +83,9 @@ public class DataStudentController {
 
 	@ApiOperation(value = "停止学员周期", notes = "停止学员周期")
 	@GetMapping("tingzhouqi")
-	public OptResult tingZhouQi(int id) {
+	public OptResult tingZhouQi(String sid) {
 		OptResult result = null;
-		if (iDataStudentService.tingZhouQi(id)){
+		if (iDataStudentService.tingZhouQi(sid)){
 			result= OptResult.success();
 			result.setMsg("停止学员周期成功！");
 		}else {
@@ -97,9 +97,9 @@ public class DataStudentController {
 
 	@ApiOperation(value = "减学员天数", notes = "减学员天数")
 	@GetMapping("jiantianshu")
-	public OptResult jianTianShu(int id) {
+	public OptResult jianTianShu() {
 		OptResult result = null;
-		if (iDataStudentService.jianTianShu(id)){
+		if (iDataStudentService.jianTianShu()){
 			result= OptResult.success();
 			result.setMsg("减学员天数成功！");
 		}else {

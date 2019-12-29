@@ -22,11 +22,11 @@ public interface IDataStudentService extends IService<Student> {
     /**
      *  停止学员周期
      */
-    boolean tingZhouQi(int id);
+    boolean tingZhouQi(String sid);
     /**
      *  减学员天数
      */
-    boolean jianTianShu(int id);
+    boolean jianTianShu();
     /**
      *  今日总在营人数
      */

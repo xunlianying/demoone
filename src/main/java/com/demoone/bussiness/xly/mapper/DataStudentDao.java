@@ -28,14 +28,14 @@ public interface DataStudentDao extends BaseMapper<Student> {
     /*
      * 停止学员周期
      */
-    @Update("update data_student set state='1' where id=#{id}")
-    boolean  tingZhouQi(int  id);
+    @Update("update data_student set state='1' where sid=#{sid}")
+    boolean  tingZhouQi(String  sid);
 
     /*
      * 减学员天数
      */
-    @Update("update data_student set surplus_day=surplus_day-1 where id=#{id}  ")
-    boolean jianTianShu(int  id);
+    @Update("update data_student set surplus_day=surplus_day-1 where  state='0'  ")
+    boolean jianTianShu();
 
     /*
      * 今日总在营人数
@@ -72,4 +72,11 @@ public interface DataStudentDao extends BaseMapper<Student> {
 
     @Delete("delete  from  data_student  where sid=#{sid} ")
     boolean deleteStudent(String sid);
+
+
+    @Select("select * from data_room  where rid=#{roomNo}")
+    DataRoom queryRoomFullNum(String roomNo);
+
+    @Select("select * from data_student where room_no=#{roomNo} ")
+    List<Student> queryRoomStudentList(String roomNo);
 }

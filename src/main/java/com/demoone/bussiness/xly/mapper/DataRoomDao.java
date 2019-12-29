@@ -27,4 +27,6 @@ public interface DataRoomDao extends BaseMapper<DataRoom> {
 
     @Delete("delete  from  data_room  where rid=#{rid} ")
     boolean deleteRoom(String rid);
+
+    List<DataRoom> queryRoomNoList(DataRoom dataRoom);
 }

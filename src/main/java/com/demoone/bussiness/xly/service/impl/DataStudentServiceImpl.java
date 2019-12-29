@@ -32,21 +32,21 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
 
     /**.
      * 停止学员周期
-     * @param id 学员的编号
+     * @param sid 学员的编号
      * @return
      */
     @Override
-    public boolean tingZhouQi(int id) {
-        return baseMapper.tingZhouQi(id);
+    public boolean tingZhouQi(String sid) {
+        return baseMapper.tingZhouQi(sid);
     }
     /**.
      *  减学员天数
-     * @param id 学员的编号
+     * @param
      * @return
      */
     @Override
-    public boolean jianTianShu(int id) {
-        return baseMapper.jianTianShu(id);
+    public boolean jianTianShu() {
+        return baseMapper.jianTianShu();
     }
     /**.
      *  今日总在营人数
@@ -83,11 +83,18 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
             if (list!=null && list.size()>0){
                 throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
             }
+            Wrapper<Student> ew2 = new EntityWrapper();
+            ew2.eq("id_no",student.getIdNo());
+            List<Student> list2 = selectList(ew2);
+            if (list2!=null && list2.size()>0){
+                throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
+            }
         }else{
             throw  new BusinessException(ErrCode.FAIL,"身份证号不能为空！");
         }
 
         student.setCreateTime(new Date());
+        student.setModifyTime(new Date());
         student.setSid("S"+StringUtils.getRandomNumber(6));
         for(int i=0;i<-1;i++){
             Wrapper<Student> ew = new EntityWrapper();
@@ -96,6 +103,12 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
             if (list==null || list.size()<1){
                 break;
             }
+        }
+        DataRoom dataRoom = baseMapper.queryRoomFullNum(student.getRoomNo());
+        List<Student> listStudentNo =  baseMapper.queryRoomStudentList(student.getRoomNo());
+
+        if (dataRoom.getFullNum()<listStudentNo.size()||dataRoom.getFullNum()==listStudentNo.size()){
+            throw new BusinessException(ErrCode.FAIL,"该房间已住满！");
         }
         int sex = Integer.parseInt(student.getIdNo().substring(16,17));
         if (sex%2>0){

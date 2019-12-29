@@ -33,7 +33,7 @@ public class DataRoom extends Model<DataRoom> {
     @ApiModelProperty("房间号")
     private String no;
 
-    @ApiModelProperty("房间状态")
+    @ApiModelProperty("房间状态,1 未住满 2 已住满")
     private String state;
 
     @ApiModelProperty("满员人数")

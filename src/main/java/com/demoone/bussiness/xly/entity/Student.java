@@ -91,7 +91,7 @@ public class Student extends Model<Student> {
     @TableField("leave_weight")
     private Double leaveWeight;
 
-    @ApiModelProperty("学员状态")
+    @ApiModelProperty("学员状态，0，在营，1 离营")
     private Integer state;
 
     @ApiModelProperty("创建时间")

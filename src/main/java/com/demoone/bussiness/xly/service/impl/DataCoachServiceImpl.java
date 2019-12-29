@@ -38,6 +38,7 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
             throw new BusinessException(ErrCode.FAIL,"该教练信息已存在！");
         }
         dataCoach.setCreateTime(new Date());
+        dataCoach.setModifyTime(new Date());
         dataCoach.setCid("C"+StringUtils.getRandomNumber(6));
         for(int i=0;i<-1;i++){
             Wrapper<DataCoach> ew1 = new EntityWrapper();
