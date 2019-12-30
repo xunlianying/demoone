@@ -46,3 +46,10 @@ spring:
             # 合并多个DruidDataSource的监控数据
             # useGlobalDataSourceStat: true
 
+
+sys :
+  # 系统使用路径相关
+  path:
+     report : F:/data/qidian/upload
+#    report : /data/qidian/upload
+
