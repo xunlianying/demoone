@@ -59,13 +59,13 @@ public interface DataStudentDao extends BaseMapper<Student> {
     /*
       * 获取教练下拉框数据
       */
-    @Select("select c.cid,c.name from data_coach c where  c.delete_state='0'")
+    @Select("select c.cid,c.name from data_coach c where  c.delete_state=0")
     List<DataCoach> coachDropDown();
 
     /*
   * 获取教练下拉框数据
   */
-    @Select("select r.rid,r.no from data_room  r where  r.delete_state='0'")
+    @Select("select r.rid,r.no from data_room  r where  r.delete_state=0 and state=1")
     List<DataRoom> roomDropDown();
 
     List<StudentInfoVo> queryStudentInfo(Page page,QueryStudentInfoVo queryStudentInfoVo);
@@ -74,9 +74,9 @@ public interface DataStudentDao extends BaseMapper<Student> {
     boolean deleteStudent(String sid);
 
 
-    @Select("select * from data_room  where rid=#{roomNo} and delete_state='0'")
+    @Select("select * from data_room  where rid=#{roomNo} and delete_state=0")
     DataRoom queryRoomFullNum(String roomNo);
 
-    @Select("select * from data_student where room_no=#{roomNo}  and delete_state='0'")
+    @Select("select * from data_student where room_no=#{roomNo}  and delete_state=0")
     List<Student> queryRoomStudentList(String roomNo);
 }

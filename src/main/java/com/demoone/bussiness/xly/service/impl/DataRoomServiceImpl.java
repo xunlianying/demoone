@@ -34,12 +34,12 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                 if (dataRoom.getFullNum()==null||dataRoom.getFullNum()==0){
                         throw new BusinessException(ErrCode.FAIL,"必须标注房间是几人间！");
                 }
-                Wrapper<DataRoom> ew = new EntityWrapper();
-                ew.eq("rid",dataRoom.getRid());
-                List<DataRoom> list = selectList(ew);
-                if (list!=null && list.size()>0){
-                        throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
-                }
+//                Wrapper<DataRoom> ew = new EntityWrapper();
+//                ew.eq("no",dataRoom.getNo());
+//                List<DataRoom> list = selectList(ew);
+//                if (list!=null && list.size()>0){
+//                        throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
+//                }
                 List<DataRoom> RoomNoList = baseMapper.queryRoomNoList(dataRoom);
                 if (RoomNoList!=null && RoomNoList.size()>0){
                         throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
@@ -56,16 +56,17 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                                 break;
                         }
                 }
-                List<Student> listStudent = baseMapper.queryRoomNo(dataRoom);
-                if (listStudent==null || listStudent.size()<1){
-                        dataRoom.setExistingNum(0);
-                        dataRoom.setState("1");//未住满
-                }else if (listStudent.size()<dataRoom.getFullNum()){
-                        dataRoom.setExistingNum(listStudent.size());
-                        dataRoom.setState("1");//未住满
-                }else if (listStudent.size()==dataRoom.getFullNum()||listStudent.size()>dataRoom.getFullNum()){
-                        throw new BusinessException(ErrCode.FAIL,"该房间已经住满！");
-                }
+			    dataRoom.setState("1");
+//                List<Student> listStudent = baseMapper.queryRoomNo(dataRoom);
+//                if (listStudent==null || listStudent.size()<1){
+//                        dataRoom.setExistingNum(0);
+//                       //未住满
+//                }else if (listStudent.size()<dataRoom.getFullNum()){
+//                        dataRoom.setExistingNum(listStudent.size());
+//                        dataRoom.setState("1");//未住满
+//                }else if (listStudent.size()==dataRoom.getFullNum()||listStudent.size()>dataRoom.getFullNum()){
+//                        throw new BusinessException(ErrCode.FAIL,"该房间已经住满！");
+//                }
                 return insert(dataRoom);
         }
 

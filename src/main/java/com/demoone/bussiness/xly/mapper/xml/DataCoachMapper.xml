@@ -19,7 +19,7 @@
 
     <select id="queryCoachInfo" parameterType="com.demoone.bussiness.xly.vo.QueryCoachInfoVo" resultType="com.demoone.bussiness.xly.vo.CoachInfoVo">
         select * from data_coach
-        <where>
+        WHERE
             delete_state=0
             <if test="name!=null and name!=''">
                 and name=#{name}
@@ -33,7 +33,5 @@
             <if test="state!=null and state!=''">
                 and state=#{state}
             </if>
-
-        </where>
     </select>
 </mapper>

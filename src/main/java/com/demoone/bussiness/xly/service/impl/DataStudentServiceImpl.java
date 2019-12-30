@@ -77,12 +77,12 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
     @Override
     public boolean addStudent(Student student) {
         if (StringUtils.isNotBlank(student.getIdNo())){
-            Wrapper<Student> ew = new EntityWrapper();
-            ew.eq("sid",student.getSid());
-            List<Student> list = selectList(ew);
-            if (list!=null && list.size()>0){
-                throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
-            }
+//            Wrapper<Student> ew = new EntityWrapper();
+//            ew.eq("sid",student.getSid());
+//            List<Student> list = selectList(ew);
+//            if (list!=null && list.size()>0){
+//                throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
+//            }
             Wrapper<Student> ew2 = new EntityWrapper();
             ew2.eq("id_no",student.getIdNo());
             List<Student> list2 = selectList(ew2);
@@ -108,7 +108,7 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, Student>
         DataRoom dataRoom = baseMapper.queryRoomFullNum(student.getRoomNo());
         List<Student> listStudentNo =  baseMapper.queryRoomStudentList(student.getRoomNo());
 
-        if (dataRoom.getFullNum()<listStudentNo.size()||dataRoom.getFullNum()==listStudentNo.size()){
+        if (dataRoom.getFullNum()<=listStudentNo.size()){
             throw new BusinessException(ErrCode.FAIL,"该房间已住满！");
         }
         int sex = Integer.parseInt(student.getIdNo().substring(16,17));

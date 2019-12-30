@@ -32,7 +32,7 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
     @Override
     public boolean addCoach(DataCoach dataCoach) {
         Wrapper<DataCoach> ew = new EntityWrapper();
-        ew.eq("cid",dataCoach.getCid());
+        ew.eq("name",dataCoach.getName());
         List<DataCoach> list = selectList(ew);
         if (list!=null && list.size()>0){
             throw new BusinessException(ErrCode.FAIL,"该教练信息已存在！");
@@ -63,8 +63,16 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
     public boolean updateCoach(DataCoach dataCoach) {
         Wrapper<DataCoach> ew = new EntityWrapper();
         ew.eq("cid",dataCoach.getCid());
-        dataCoach.setModifyTime(new Date());
-        return update(dataCoach,ew);
+		DataCoach dataCoach1 = selectOne(ew);
+		if (dataCoach1==null){
+			throw new BusinessException(ErrCode.FAIL,"该教练信息不存在！");
+		}
+		dataCoach1.setModifyTime(new Date());
+		dataCoach1.setName(dataCoach.getName());
+		dataCoach1.setPhone(dataCoach.getPhone());
+		dataCoach1.setPosition(dataCoach.getPosition());
+		dataCoach1.setSex(dataCoach.getSex());
+        return updateById(dataCoach);
     }
 
     @Override
