@@ -3,7 +3,7 @@ package com.demoone.bussiness.xly.web;
 
 import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.entity.DataRoom;
-import com.demoone.bussiness.xly.entity.Student;
+import com.demoone.bussiness.xly.entity.DataStudent;
 import com.demoone.bussiness.xly.service.IDataStudentService;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.StudentManagerHeadVo;
@@ -36,9 +36,9 @@ public class DataStudentController {
 
 	@ApiOperation(value = "增加学员信息", notes = "增加学员信息")
 	@PostMapping("addStudent")
-	public OptResult addStudent(@RequestBody Student student) {
+	public OptResult addStudent(@RequestBody DataStudent dataStudent) {
 		OptResult result = null;
-		if (iDataStudentService.addStudent(student)){
+		if (iDataStudentService.addStudent(dataStudent)){
 			result= OptResult.success();
 			result.setMsg("添加成功!");
 		}else {
@@ -146,9 +146,9 @@ public class DataStudentController {
 
 	@ApiOperation(value = "修改学员信息", notes = "修改学员信息")
 	@PostMapping("updateStudent")
-	public OptResult updateStudent(@RequestBody Student student) {
+	public OptResult updateStudent(@RequestBody DataStudent dataStudent) {
 		OptResult result = null;
-		if (iDataStudentService.updateStudent(student)){
+		if (iDataStudentService.updateStudent(dataStudent)){
 			result= OptResult.success();
 			result.setMsg("修改成功!");
 		}else {

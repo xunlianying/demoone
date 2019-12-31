@@ -3,11 +3,10 @@ package com.demoone.bussiness.xly.mapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.entity.DataRoom;
-import com.demoone.bussiness.xly.entity.Student;
+import com.demoone.bussiness.xly.entity.DataStudent;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
-import com.demoone.bussiness.xly.vo.StudentInfoVo;
-import org.apache.ibatis.annotations.Delete;
+import com.demoone.bussiness.xly.vo.DataStudentInfoVo;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -23,7 +22,7 @@ import java.util.List;
  * @since 2019-12-06
  */
 
-public interface DataStudentDao extends BaseMapper<Student> {
+public interface DataStudentDao extends BaseMapper<DataStudent> {
 
     /*
      * 停止学员周期
@@ -68,7 +67,7 @@ public interface DataStudentDao extends BaseMapper<Student> {
     @Select("select r.rid,r.no from data_room  r where  r.delete_state=0 and state=1")
     List<DataRoom> roomDropDown();
 
-    List<StudentInfoVo> queryStudentInfo(Page page,QueryStudentInfoVo queryStudentInfoVo);
+    List<DataStudentInfoVo> queryStudentInfo(Page page, QueryStudentInfoVo queryStudentInfoVo);
 
     @Update(" update data_student set delete_state='1'  where sid=#{sid} ")
     boolean deleteStudent(String sid);
@@ -78,5 +77,5 @@ public interface DataStudentDao extends BaseMapper<Student> {
     DataRoom queryRoomFullNum(String roomNo);
 
     @Select("select * from data_student where room_no=#{roomNo}  and delete_state=0")
-    List<Student> queryRoomStudentList(String roomNo);
+    List<DataStudent> queryRoomStudentList(String roomNo);
 }

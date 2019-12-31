@@ -3,7 +3,7 @@
 <mapper namespace="com.demoone.bussiness.xly.mapper.DataStudentDao">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.demoone.bussiness.xly.entity.Student">
+    <resultMap id="BaseResultMap" type="com.demoone.bussiness.xly.entity.DataStudent">
         <id column="sid" property="sid" />
         <result column="name" property="name" />
         <result column="gender" property="gender" />
@@ -27,7 +27,7 @@
     </resultMap>
 
 
-    <select id="queryStudentInfo" parameterType="com.demoone.bussiness.xly.vo.QueryStudentInfoVo" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
+    <select id="queryStudentInfo" parameterType="com.demoone.bussiness.xly.vo.QueryStudentInfoVo" resultType="com.demoone.bussiness.xly.vo.DataStudentInfoVo">
         select * from data_student
         <where>
                 delete_state=0

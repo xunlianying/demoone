@@ -9,7 +9,6 @@ import com.demoone.bussiness.xly.service.IDataCoachService;
 import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 import com.demoone.bussiness.xly.vo.CoachInfoVo;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
-import com.demoone.bussiness.xly.vo.StudentInfoVo;
 import com.demoone.support.exception.BusinessException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.utils.string.StringUtils;

@@ -1,9 +1,8 @@
 package com.demoone.bussiness.xly.entity;
 
-import com.baomidou.mybatisplus.enums.IdType;
 import java.math.BigDecimal;
 import java.util.Date;
-import com.baomidou.mybatisplus.annotations.TableId;
+
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.activerecord.Model;
 import com.baomidou.mybatisplus.annotations.TableName;
@@ -13,7 +12,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
 
 /**
  * <p>
@@ -27,7 +25,7 @@ import java.util.List;
 @TableName("data_student")
 @Data
 @ToString
-public class Student extends Model<Student> {
+public class DataStudent extends Model<DataStudent> {
 
     private static final long serialVersionUID = 1L;
 

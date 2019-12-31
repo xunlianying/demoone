@@ -32,7 +32,7 @@
     </select>
 
 
-    <select id="queryRoomNo" parameterType="com.demoone.bussiness.xly.entity.DataRoom" resultType="com.demoone.bussiness.xly.vo.StudentInfoVo">
+    <select id="queryRoomNo" parameterType="com.demoone.bussiness.xly.entity.DataRoom" resultType="com.demoone.bussiness.xly.vo.DataStudentInfoVo">
         select * from data_student
         <where>
             delete_state=0

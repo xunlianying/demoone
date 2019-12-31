@@ -3,10 +3,10 @@ package com.demoone.bussiness.xly.service;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataCoach;
 import com.demoone.bussiness.xly.entity.DataRoom;
-import com.demoone.bussiness.xly.entity.Student;
+import com.demoone.bussiness.xly.entity.DataStudent;
 import com.baomidou.mybatisplus.service.IService;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
-import com.demoone.bussiness.xly.vo.StudentInfoVo;
+import com.demoone.bussiness.xly.vo.DataStudentInfoVo;
 
 import java.util.List;
 
@@ -18,7 +18,7 @@ import java.util.List;
  * @author 华强
  * @since 2019-12-06
  */
-public interface IDataStudentService extends IService<Student> {
+public interface IDataStudentService extends IService<DataStudent> {
     /**
      *  停止学员周期
      */
@@ -42,7 +42,7 @@ public interface IDataStudentService extends IService<Student> {
     /**
      *  添加学员信息
      */
-    boolean addStudent(Student student);
+    boolean addStudent(DataStudent dataStudent);
     /**
      *  获取教练下拉框
      */
@@ -52,9 +52,9 @@ public interface IDataStudentService extends IService<Student> {
      */
     List<DataRoom> roomDropDown();
 
-    Page<StudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo);
+    Page<DataStudentInfoVo> queryStudentInfo(QueryStudentInfoVo queryStudentInfoVo);
 
-    boolean updateStudent(Student student);
+    boolean updateStudent(DataStudent dataStudent);
 
     boolean deleteStudent(String sid);
 }
