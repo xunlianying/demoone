@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : aly_seven
+Source Server         : 39.100.145.68
 Source Server Version : 50728
 Source Host           : 39.100.145.68:3306
-Source Database       : seven_test
+Source Database       : seven
 
 Target Server Type    : MYSQL
 Target Server Version : 50728
 File Encoding         : 65001
 
-Date: 2019-12-29 21:12:01
+Date: 2019-12-31 14:59:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3343,6 +3343,9 @@ CREATE TABLE `data_coach` (
   PRIMARY KEY (`cid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='教练信息表';
 
+-- ----------------------------
+-- Records of data_coach
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for data_file_pic
@@ -3376,7 +3379,7 @@ CREATE TABLE `data_history_today` (
   `content` longtext COMMENT '事件内容',
   `crate_time` datetime DEFAULT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='历史上的今天数据';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='历史上的今天数据';
 
 -- ----------------------------
 -- Records of data_history_today
@@ -3423,21 +3426,41 @@ INSERT INTO `data_map_key` VALUES ('f3726c38b98043b1901fe0a19f82539e', 'gaode', 
 INSERT INTO `data_map_key` VALUES ('fe9da8930af1490caebff30b45e6bcac', 'gaode', 'fdc51a08f42617cc1c0580344703968d', '2019-03-26', '2019-03-26 16:51:50', '2019-03-26 16:51:50');
 
 -- ----------------------------
+-- Table structure for data_photo_info
+-- ----------------------------
+DROP TABLE IF EXISTS `data_photo_info`;
+CREATE TABLE `data_photo_info` (
+  `id` varchar(255) NOT NULL,
+  `file_id` varchar(255) DEFAULT NULL COMMENT '文件id',
+  `type` int(11) DEFAULT NULL COMMENT '1学院入营照片 2学员离营照片 3学员合同照片 4教练照片',
+  `info_id` varchar(255) DEFAULT NULL COMMENT '文件信息id 学员照片存学员id，宿舍照片存宿舍id',
+  `create_time` datetime DEFAULT NULL,
+  `status` tinyint(4) DEFAULT '0' COMMENT '0可用，1不可用',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='照片信息表';
+
+-- ----------------------------
+-- Records of data_photo_info
+-- ----------------------------
+
+-- ----------------------------
 -- Table structure for data_room
 -- ----------------------------
 DROP TABLE IF EXISTS `data_room`;
 CREATE TABLE `data_room` (
   `rid` varchar(32) NOT NULL,
   `no` varchar(32) DEFAULT NULL COMMENT '房间号',
-  `state` varchar(32) DEFAULT NULL COMMENT '房间状态',
-  `full_num` int(2) DEFAULT NULL COMMENT '满员人数',
-  `existing_num` int(11) DEFAULT NULL COMMENT '已经入住人数',
+  `state` varchar(32) DEFAULT NULL COMMENT '房间状态 1 未住满 2 已住满',
+  `full_num` int(2) DEFAULT '0' COMMENT '满员人数',
+  `existing_num` int(11) DEFAULT '0' COMMENT '已经入住人数',
   `create_time` datetime DEFAULT NULL COMMENT '创建时间',
   `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
-  `delete_state` int(2) DEFAULT NULL COMMENT '删除状态，0，显示，1 删除',
+  `delete_state` int(2) DEFAULT '0' COMMENT '删除状态，0，显示，1 删除',
   PRIMARY KEY (`rid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- ----------------------------
+-- Records of data_room
 -- ----------------------------
 
 -- ----------------------------
@@ -3468,24 +3491,26 @@ CREATE TABLE `data_student` (
   PRIMARY KEY (`sid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- ----------------------------
+-- Records of data_student
+-- ----------------------------
 
 -- ----------------------------
--- Table structure for sys_file
+-- Table structure for sys_local_file
 -- ----------------------------
-DROP TABLE IF EXISTS `sys_file`;
-CREATE TABLE `sys_file` (
-  `id` varchar(50) NOT NULL COMMENT 'uuid',
-  `name` varchar(255) DEFAULT NULL COMMENT '照片名称',
-  `size` double DEFAULT NULL COMMENT '大小（k）',
-  `suffix` varchar(50) DEFAULT NULL COMMENT '照片类型 例.png',
-  `path` varchar(255) DEFAULT NULL COMMENT '照片路径',
-  `relationship_id` varchar(30) DEFAULT NULL COMMENT '关联教练，人员，房间id',
-  `type` tinyint(4) DEFAULT NULL COMMENT '照片类型 1学院入营照片 2学员离营照片 3学员合同照片 4教练照片',
-  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
-  `modify_time` datetime DEFAULT NULL COMMENT '修改时间',
+DROP TABLE IF EXISTS `sys_local_file`;
+CREATE TABLE `sys_local_file` (
+  `id` varchar(32) NOT NULL,
+  `name` varchar(100) NOT NULL COMMENT '文件名',
+  `description` varchar(4000) DEFAULT NULL COMMENT '备注',
+  `type` varchar(10) NOT NULL COMMENT '类型',
+  `volume` varchar(10) NOT NULL COMMENT '路径分隔符',
+  `path` varchar(4000) NOT NULL COMMENT '路径',
+  `create_time` datetime NOT NULL,
+  `create_by` varchar(36) DEFAULT NULL COMMENT '创建人',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of sys_file
+-- Records of sys_local_file
 -- ----------------------------

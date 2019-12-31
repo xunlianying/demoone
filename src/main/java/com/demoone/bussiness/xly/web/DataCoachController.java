@@ -1,17 +1,15 @@
 package com.demoone.bussiness.xly.web;
 
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.demoone.bussiness.xly.entity.DataCoach;
-import com.demoone.bussiness.xly.entity.Student;
 import com.demoone.bussiness.xly.service.IDataCoachService;
 import com.demoone.support.exception.BusinessException;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
-import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +23,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-12-06
  */
 @RestController
-@RequestMapping("/coach")
+@RequestMapping("/api/xly/coach")
 @Api(value = "CoachController", description = "教练信息")
 public class DataCoachController {
 
@@ -36,7 +34,6 @@ public class DataCoachController {
 
     @ApiOperation(value = "增加教练信息", notes = "增加教练信息")
     @PostMapping("addCoach")
-    @ResponseBody
     public OptResult addCoach(@RequestBody DataCoach dataCoach) {
         OptResult result = null;
         if (iDataCoachService.addCoach(dataCoach)){
@@ -49,7 +46,9 @@ public class DataCoachController {
     }
     @ApiOperation(value = "删除教练信息", notes = "删除删除信息")
     @GetMapping("delete")
-    @ResponseBody
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "cid", value = "教练id", paramType = "query"),
+	})
     public OptResult delete(String cid) {
         OptResult result = null;
         if (iDataCoachService.deleteCoach(cid)){

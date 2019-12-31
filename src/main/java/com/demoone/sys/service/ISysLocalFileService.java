@@ -20,6 +20,8 @@ public interface ISysLocalFileService extends IService<SysLocalFile> {
 
 	SysLocalFile upload(MultipartFile file) throws IOException;
 
-	void downloadFile(HttpServletResponse response, String id) throws IOException;
+	void downloadFile(HttpServletResponse response, String id)throws IOException;
+
+	void downLoadFileOnline(String id, boolean online);
 
 }

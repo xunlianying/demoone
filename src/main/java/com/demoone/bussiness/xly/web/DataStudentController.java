@@ -11,6 +11,8 @@ import com.demoone.support.exception.BusinessException;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-12-06
  */
 @RestController
-@RequestMapping("/xly/base/student")
+@RequestMapping("/api/xly/student")
 @Api(value = "StudentController", description = "学员信息")
 public class DataStudentController {
 
@@ -56,6 +58,9 @@ public class DataStudentController {
 
 	@ApiOperation(value = "删除学员信息", notes = "删除学员信息")
 	@GetMapping("delete")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "sid", value = "学员id", paramType = "query"),
+	})
 	public OptResult delete(String sid) {
 		OptResult result = null;
 		if (iDataStudentService.deleteStudent(sid)){

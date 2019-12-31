@@ -6,7 +6,6 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.demoone.bussiness.xly.entity.DataRoom;
 import com.demoone.bussiness.xly.service.IDataRoomService;
 import com.demoone.support.exception.BusinessException;
-import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
 import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
 import com.demoone.support.sys.ErrCode;
 import com.demoone.support.sys.OptResult;
@@ -27,7 +26,7 @@ import org.springframework.web.bind.annotation.*;
  * @since 2019-12-06
  */
 @RestController
-@RequestMapping("/room")
+@RequestMapping("/api/xly/room")
 @Api(value = "RoomController", description = "房间信息")
 public class DataRoomController {
 
@@ -38,7 +37,6 @@ public class DataRoomController {
 
     @ApiOperation(value = "增加房间信息", notes = "增加房间信息")
     @PostMapping("addRoom")
-    @ResponseBody
     public OptResult addRoom(@RequestBody DataRoom dataRoom) {
         OptResult result = null;
         if (iDataRoomService.addRoom(dataRoom)){
@@ -52,7 +50,9 @@ public class DataRoomController {
     }
     @ApiOperation(value = "删除房间信息", notes = "删除房间信息")
     @GetMapping("delete")
-    @ResponseBody
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "rid", value = "房间id", paramType = "query"),
+	})
     public OptResult delete(String rid) {
         OptResult result = null;
         if (iDataRoomService.deleteRoom(rid)){
@@ -70,7 +70,6 @@ public class DataRoomController {
             @ApiImplicitParam(name = "size", value = "每页条数", paramType = "query", required = false,defaultValue = "10")
     })
     @GetMapping("list")
-    @ResponseBody
     public OptResult list( Integer page, Integer size,String roomNo) {
         OptResult result = null;
         if (page ==null){

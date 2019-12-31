@@ -1,6 +1,5 @@
 package com.demoone.sys.web;
 
-import com.alibaba.fastjson.JSONObject;
 import com.demoone.support.sys.OptResult;
 import com.demoone.sys.service.ISysLocalFileService;
 import io.swagger.annotations.Api;
@@ -33,9 +32,7 @@ public class FileController {
     private ISysLocalFileService iSysLocalFileService;
 
 
-    @ApiOperation(value = "文件上传",
-            notes = "文件上传 返回文件ID",
-            response = JSONObject.class)
+    @ApiOperation(value = "文件上传", notes = "文件上传 返回文件ID")
     @PostMapping("upload")
     @ResponseBody
     public OptResult upload(@RequestParam("file") MultipartFile file) throws IOException {
@@ -53,6 +50,19 @@ public class FileController {
     public void downloadFile(HttpServletResponse response, @PathVariable("id") String id) throws IOException {
 		iSysLocalFileService.downloadFile(response,id);
     }
+
+
+	@ApiOperation(value = "文件下载",
+			notes = "文件下载 根据文件ID下载文件           例：http://192.168.1.15:8081/api/file/downLoadFileOnline/78f6637ebe5846f8a472b4cacbbdfdb2")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "id", value = "文件ID", required = true, paramType = "query")
+	})
+	@GetMapping(value="/downLoadFileOnline/{id}")
+	public void downLoadFileOnline(HttpServletResponse response, @PathVariable("id") String id) throws IOException {
+		iSysLocalFileService.downLoadFileOnline(id,true);
+	}
+
+
 
 
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.demoone.bussiness.xly.mapper.DataPhotoInfoDao">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.demoone.bussiness.xly.entity.DataPhotoInfo">
+        <id column="id" property="id" />
+        <result column="file_id" property="fileId" />
+        <result column="type" property="type" />
+        <result column="info_id" property="infoId" />
+        <result column="create_time" property="createTime" />
+        <result column="status" property="status" />
+    </resultMap>
+
+
+    <update id="deleteFile" parameterType="java.lang.String">
+      UPDATE data_photo_info SET status=1 WHERE file_id=#{fileId}
+    </update>
+
+
+    <select id="getPhotoList" resultType="java.lang.String">
+        SELECT file_id FROM data_photo_info WHERE info_id=#{id} AND type=#{type}
+    </select>
+</mapper>
