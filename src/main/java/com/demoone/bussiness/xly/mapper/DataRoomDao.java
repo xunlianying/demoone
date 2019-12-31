@@ -25,7 +25,7 @@ public interface DataRoomDao extends BaseMapper<DataRoom> {
 
     List<DataStudent> queryRoomNo(DataRoom dataRoom);
 
-    @Update("update data_room set delete_state='1' where rid=#{rid} ")
+    @Update("update data_room set delete_state=1 where rid=#{rid} ")
     boolean deleteRoom(String rid);
 
     List<DataRoom> queryRoomNoList(DataRoom dataRoom);

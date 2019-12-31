@@ -111,11 +111,15 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, DataStud
         if (dataRoom.getFullNum()<= listDataStudentNo.size()){
             throw new BusinessException(ErrCode.FAIL,"该房间已住满！");
         }
-        int sex = Integer.parseInt(dataStudent.getIdNo().substring(16,17));
-        if (sex%2>0){
-            dataStudent.setGender(1);
+        if (dataStudent.getIdNo().length()!=18||dataStudent.getIdNo()==null){
+            throw new BusinessException(ErrCode.FAIL,"身份证不合法！");
         }else {
-            dataStudent.setGender(2);
+            int sex = Integer.parseInt(dataStudent.getIdNo().substring(16, 17));
+            if (sex % 2 > 0) {
+                dataStudent.setGender(1);
+            } else {
+                dataStudent.setGender(2);
+            }
         }
         return insert(dataStudent);
     }

@@ -22,6 +22,6 @@ public interface DataCoachDao extends BaseMapper<DataCoach> {
 
     List<CoachInfoVo> queryCoachInfo(Page<CoachInfoVo> page, QueryCoachInfoVo queryCoachInfoVo);
 
-    @Update("update   data_coach set delete_state='1' where cid=#{cid} ")
+    @Update("update   data_coach set delete_state=1 where cid=#{cid} ")
     boolean deleteCoach(String rid);
 }

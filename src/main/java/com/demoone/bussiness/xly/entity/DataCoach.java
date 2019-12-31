@@ -33,6 +33,10 @@ public class DataCoach extends Model<DataCoach> {
     @ApiModelProperty("教练姓名")
     private String name;
 
+    @TableField("id_no")
+    @ApiModelProperty("身份证")
+    private String idNo;
+
     @ApiModelProperty("性别 1男 2女")
     private Integer sex;
 

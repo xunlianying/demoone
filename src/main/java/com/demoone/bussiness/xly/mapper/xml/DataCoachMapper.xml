@@ -6,6 +6,7 @@
     <resultMap id="BaseResultMap" type="com.demoone.bussiness.xly.entity.DataCoach">
         <id column="cid" property="cid" />
         <result column="name" property="name" />
+        <result column="id_no" property="idNo" />
         <result column="sex" property="sex" />
         <result column="position" property="position" />
         <result column="state" property="state" />

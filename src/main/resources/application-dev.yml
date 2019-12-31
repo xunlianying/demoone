@@ -50,6 +50,6 @@ spring:
 sys :
   # 系统使用路径相关
   path:
-#     report : F:/data/qidian/upload
-    report : /data/qidian/upload
+     report : F:/data/qidian/upload
+#     report : /data/qidian/upload
 

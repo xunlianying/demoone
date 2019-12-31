@@ -3333,6 +3333,7 @@ DROP TABLE IF EXISTS `data_coach`;
 CREATE TABLE `data_coach` (
   `cid` varchar(32) NOT NULL COMMENT '教练编号',
   `name` varchar(32) DEFAULT NULL COMMENT '教练姓名',
+  `id_no` varchar(20) DEFAULT NULL COMMENT '身份证',
   `sex` tinyint(1) DEFAULT NULL COMMENT '性别 1男 2女',
   `position` varchar(32) DEFAULT NULL COMMENT '职位',
   `state` int(2) DEFAULT NULL COMMENT '教练状态',

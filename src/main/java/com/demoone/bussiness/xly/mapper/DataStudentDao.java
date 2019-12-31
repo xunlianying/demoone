@@ -27,38 +27,38 @@ public interface DataStudentDao extends BaseMapper<DataStudent> {
     /*
      * 停止学员周期
      */
-    @Update("update data_student set state='1' where sid=#{sid} and delete_state='0'")
+    @Update("update data_student set state=1 where sid=#{sid} and delete_state=0")
     boolean  tingZhouQi(String  sid);
 
     /*
      * 减学员天数
      */
-    @Update("update data_student set surplus_day=surplus_day-1 where  state='0' and delete_state='0'  ")
+    @Update("update data_student set surplus_day=surplus_day-1 where  state=0 and delete_state=0 ")
     boolean jianTianShu();
 
     /*
      * 今日总在营人数
      */
-    @Select("select count(*) from data_student where state='0'  and delete_state='0'")
+    @Select("select count(*) from data_student where state=0  and delete_state=0 ")
     String zongZaiYing();
 
     /*
      * 今日出营人数
      */
-    @Select("select count(1) from data_student where state='1' and leave_time=now() and delete_state='0' ")
+    @Select("select count(1) from data_student where state=1 and leave_time=now() and delete_state=0 ")
     String jinChuYing();
 
     /*
      * 今日入营人数
      */
-    @Select("select count(1) from data_student where  join_time=now() and delete_state='0' ")
+    @Select("select count(1) from data_student where  join_time=now() and delete_state=0 ")
     String jinRuYing();
 
 
     /*
       * 获取教练下拉框数据
       */
-    @Select("select c.cid,c.name from data_coach c where  c.delete_state=0")
+    @Select("select c.cid,c.name from data_coach c where  c.delete_state=0 ")
     List<DataCoach> coachDropDown();
 
     /*
@@ -69,13 +69,13 @@ public interface DataStudentDao extends BaseMapper<DataStudent> {
 
     List<DataStudentInfoVo> queryStudentInfo(Page page, QueryStudentInfoVo queryStudentInfoVo);
 
-    @Update(" update data_student set delete_state='1'  where sid=#{sid} ")
+    @Update(" update data_student set delete_state=1  where sid=#{sid} ")
     boolean deleteStudent(String sid);
 
 
-    @Select("select * from data_room  where rid=#{roomNo} and delete_state=0")
+    @Select("select * from data_room  where rid=#{roomNo} and delete_state=0 ")
     DataRoom queryRoomFullNum(String roomNo);
 
-    @Select("select * from data_student where room_no=#{roomNo}  and delete_state=0")
+    @Select("select * from data_student where room_no=#{roomNo}  and delete_state=0 ")
     List<DataStudent> queryRoomStudentList(String roomNo);
 }

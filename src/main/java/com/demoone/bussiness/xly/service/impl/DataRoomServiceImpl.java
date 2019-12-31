@@ -33,12 +33,6 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                 if (dataRoom.getFullNum()==null||dataRoom.getFullNum()==0){
                         throw new BusinessException(ErrCode.FAIL,"必须标注房间是几人间！");
                 }
-//                Wrapper<DataRoom> ew = new EntityWrapper();
-//                ew.eq("no",dataRoom.getNo());
-//                List<DataRoom> list = selectList(ew);
-//                if (list!=null && list.size()>0){
-//                        throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
-//                }
                 List<DataRoom> RoomNoList = baseMapper.queryRoomNoList(dataRoom);
                 if (RoomNoList!=null && RoomNoList.size()>0){
                         throw new BusinessException(ErrCode.FAIL,"该房间信息已存在！");
