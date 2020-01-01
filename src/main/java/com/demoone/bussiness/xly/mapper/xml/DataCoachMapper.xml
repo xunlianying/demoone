@@ -35,4 +35,15 @@
                 and state=#{state}
             </if>
     </select>
+
+
+    <update id="deleteCoach" parameterType="java.lang.String">
+       update data_coach set delete_state=1 where cid
+       in (
+        <foreach collection="cid" item="item" index="index" separator=",">
+            #{item}
+        </foreach>
+       )
+
+    </update>
 </mapper>

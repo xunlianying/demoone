@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.service.IService;
 import com.demoone.bussiness.xly.vo.QueryCoachInfoVo;
 import com.demoone.bussiness.xly.vo.CoachInfoVo;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -22,5 +24,5 @@ public interface IDataCoachService extends IService<DataCoach> {
 
     boolean updateCoach(DataCoach dataCoach);
 
-    boolean deleteCoach(String cid);
+    boolean deleteCoach(List<String> cid);
 }

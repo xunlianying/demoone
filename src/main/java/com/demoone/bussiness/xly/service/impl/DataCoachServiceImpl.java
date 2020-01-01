@@ -83,7 +83,13 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
     }
 
     @Override
-    public boolean deleteCoach(String cid) {
-        return baseMapper.deleteCoach(cid);
+    public boolean deleteCoach(List<String> cid) {
+        if (cid!=null && cid.size()>0){
+            throw new BusinessException(ErrCode.FAIL,"请选择要删除的数据");
+        }
+        if (baseMapper.deleteCoach(cid)>0){
+            return true;
+        }
+        return false;
     }
 }

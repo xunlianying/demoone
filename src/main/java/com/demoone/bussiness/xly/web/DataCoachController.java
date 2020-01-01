@@ -14,6 +14,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -49,7 +51,7 @@ public class DataCoachController {
 	@ApiImplicitParams({
 			@ApiImplicitParam(name = "cid", value = "教练id", paramType = "query"),
 	})
-    public OptResult delete(String cid) {
+    public OptResult delete(List<String> cid) {
         OptResult result = null;
         if (iDataCoachService.deleteCoach(cid)){
             result= OptResult.success();
