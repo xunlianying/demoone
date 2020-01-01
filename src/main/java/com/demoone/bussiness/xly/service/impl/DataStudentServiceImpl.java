@@ -108,10 +108,10 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, DataStud
         DataRoom dataRoom = baseMapper.queryRoomFullNum(dataStudent.getRoomNo());
         List<DataStudent> listDataStudentNo =  baseMapper.queryRoomStudentList(dataStudent.getRoomNo());
 
-        if (dataRoom.getFullNum()<= listDataStudentNo.size()){
+        if (dataRoom!=null && dataRoom.getFullNum()<= listDataStudentNo.size()){
             throw new BusinessException(ErrCode.FAIL,"该房间已住满！");
         }
-        if (dataStudent.getIdNo().length()!=18||dataStudent.getIdNo()==null){
+        if (dataStudent.getIdNo()==null || dataStudent.getIdNo().length()!=18){
             throw new BusinessException(ErrCode.FAIL,"身份证不合法！");
         }else {
             int sex = Integer.parseInt(dataStudent.getIdNo().substring(16, 17));
