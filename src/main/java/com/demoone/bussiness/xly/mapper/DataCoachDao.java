@@ -23,6 +23,6 @@ public interface DataCoachDao extends BaseMapper<DataCoach> {
 
     List<CoachInfoVo> queryCoachInfo(Page<CoachInfoVo> page, QueryCoachInfoVo queryCoachInfoVo);
 
-    @Update("update data_coach set delete_state=1 where cid=#{cid} ")
-    int deleteCoach(@Param("rid") List<String> rid);
+   // @Update("update data_coach set delete_state=1 where cid=#{cid} ")
+    int deleteCoach(@Param("cid") List<String>   cid);
 }

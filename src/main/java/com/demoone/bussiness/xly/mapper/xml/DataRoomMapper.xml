@@ -51,4 +51,14 @@
             </if>
         </where>
     </select>
+
+
+    <update id="deleteRoom" parameterType="java.lang.String">
+        update data_room set delete_state=1 where rid
+        in (
+        <foreach collection="rid" item="item" index="" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
 </mapper>

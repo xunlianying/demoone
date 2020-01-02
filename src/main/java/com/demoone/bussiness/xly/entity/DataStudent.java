@@ -90,6 +90,7 @@ public class DataStudent extends Model<DataStudent> {
 
 
     @ApiModelProperty("删除状态，0，显示，1 删除")
+    @TableField("delete_state")
     private Integer deleteState;
 
     @ApiModelProperty("创建时间")

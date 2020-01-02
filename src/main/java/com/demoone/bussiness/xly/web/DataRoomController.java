@@ -17,6 +17,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -49,11 +51,8 @@ public class DataRoomController {
         return result;
     }
     @ApiOperation(value = "删除房间信息", notes = "删除房间信息")
-    @GetMapping("delete")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "rid", value = "房间id", paramType = "query"),
-	})
-    public OptResult delete(String rid) {
+    @PostMapping("delete")
+    public OptResult delete(@RequestBody  List<String> rid) {
         OptResult result = null;
         if (iDataRoomService.deleteRoom(rid)){
             result= OptResult.success();

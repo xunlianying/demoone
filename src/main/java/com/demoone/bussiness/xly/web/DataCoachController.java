@@ -47,11 +47,11 @@ public class DataCoachController {
         return result;
     }
     @ApiOperation(value = "删除教练信息", notes = "删除删除信息")
-    @GetMapping("delete")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "cid", value = "教练id", paramType = "query"),
-	})
-    public OptResult delete(List<String> cid) {
+    @PostMapping("delete")
+//	@ApiImplicitParams({
+//			@ApiImplicitParam(name = "cid", value = "教练id", paramType = "query"),
+//	})
+    public OptResult delete(@RequestBody  List<String>   cid) {
         OptResult result = null;
         if (iDataCoachService.deleteCoach(cid)){
             result= OptResult.success();

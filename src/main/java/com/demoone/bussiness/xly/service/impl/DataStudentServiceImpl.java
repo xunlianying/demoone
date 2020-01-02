@@ -85,6 +85,7 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, DataStud
 //            }
             Wrapper<DataStudent> ew2 = new EntityWrapper();
             ew2.eq("id_no", dataStudent.getIdNo());
+            ew2.eq("delete_state",0);
             List<DataStudent> list2 = selectList(ew2);
             if (list2!=null && list2.size()>0){
                 throw new BusinessException(ErrCode.FAIL,"该学员信息已存在！");
@@ -167,7 +168,19 @@ public class DataStudentServiceImpl extends ServiceImpl<DataStudentDao, DataStud
     }
 
     @Override
-    public boolean deleteStudent(String sid) {
-        return baseMapper.deleteStudent(sid);
+    public boolean deleteStudent(List<String> sid) {
+        if (sid==null && sid.size()<1){
+            throw new BusinessException(ErrCode.FAIL,"请选择要删除的数据");
+        }
+        if (baseMapper.deleteStudent(sid)>0){
+            return true;
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean jiHuoZhouQi(String sid) {
+        return  baseMapper.jiHuoZhouQi(sid);
     }
 }

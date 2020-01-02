@@ -34,6 +34,7 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
         if (StringUtils.isNotBlank(dataCoach.getIdNo())){
             Wrapper<DataCoach> ew = new EntityWrapper();
             ew.eq("id_no",dataCoach.getIdNo());
+            ew.eq("delete_state",0);
             List<DataCoach> list = selectList(ew);
             if (list!=null && list.size()>0){
                 throw new BusinessException(ErrCode.FAIL,"该教练信息已存在！");
@@ -53,6 +54,16 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
             List<DataCoach> list1 = selectList(ew1);
             if (list1==null || list1.size()<1){
                 break;
+            }
+        }
+        if (dataCoach.getIdNo()==null || dataCoach.getIdNo().length()!=18){
+            throw new BusinessException(ErrCode.FAIL,"身份证不合法！");
+        }else {
+            int sex = Integer.parseInt(dataCoach.getIdNo().substring(16, 17));
+            if (sex % 2 > 0) {
+                dataCoach.setSex(1);
+            } else {
+                dataCoach.setSex(2);
             }
         }
         return insert(dataCoach);
@@ -84,12 +95,12 @@ public class DataCoachServiceImpl extends ServiceImpl<DataCoachDao, DataCoach> i
 
     @Override
     public boolean deleteCoach(List<String> cid) {
-        if (cid!=null && cid.size()>0){
+        if (cid==null || cid.size()<1){
             throw new BusinessException(ErrCode.FAIL,"请选择要删除的数据");
         }
         if (baseMapper.deleteCoach(cid)>0){
             return true;
         }
-        return false;
+        return  false;
     }
 }

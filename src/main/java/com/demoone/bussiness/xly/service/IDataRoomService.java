@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.service.IService;
 import com.demoone.bussiness.xly.vo.QueryRoomInfoVo;
 import com.demoone.bussiness.xly.vo.RoomInfoVo;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -22,5 +24,5 @@ public interface IDataRoomService extends IService<DataRoom> {
 
     boolean updateRoom(DataRoom dataRoom);
 
-    boolean deleteRoom(String rid);
+    boolean deleteRoom(List<String> rid);
 }

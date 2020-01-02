@@ -43,7 +43,7 @@ public class DataCoach extends Model<DataCoach> {
     @ApiModelProperty("职位")
     private String position;
 
-    @ApiModelProperty("教练状态")
+    @ApiModelProperty("教练状态  0，在营，1 离营")
     private Integer state;
 
     @ApiModelProperty("创建时间")
@@ -58,6 +58,7 @@ public class DataCoach extends Model<DataCoach> {
     private String phone;
 
     @ApiModelProperty("删除状态，0，显示，1 删除")
+    @TableField("delete_state")
     private Integer deleteState;
 
     @Override

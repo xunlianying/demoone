@@ -17,6 +17,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * <p>
  *  前端控制器
@@ -57,11 +59,8 @@ public class DataStudentController {
 	}
 
 	@ApiOperation(value = "删除学员信息", notes = "删除学员信息")
-	@GetMapping("delete")
-	@ApiImplicitParams({
-			@ApiImplicitParam(name = "sid", value = "学员id", paramType = "query"),
-	})
-	public OptResult delete(String sid) {
+	@PostMapping("delete")
+	public OptResult delete(@RequestBody List<String> sid) {
 		OptResult result = null;
 		if (iDataStudentService.deleteStudent(sid)){
 			result= OptResult.success();
@@ -99,6 +98,18 @@ public class DataStudentController {
 		return result;
 	}
 
+	@ApiOperation(value = "激活学员周期", notes = "激活学员周期")
+	@GetMapping("jihuozhouqi")
+	public OptResult jihuozhouqi(String sid) {
+		OptResult result = null;
+		if (iDataStudentService.jiHuoZhouQi(sid)){
+			result= OptResult.success();
+			result.setMsg("激活学员周期成功！");
+		}else {
+			throw new BusinessException(ErrCode.FAIL,"激活学员周期失败！");
+		}
+		return result;
+	}
 
 	@ApiOperation(value = "减学员天数", notes = "减学员天数")
 	@GetMapping("jiantianshu")

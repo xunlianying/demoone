@@ -50,16 +50,6 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
                         }
                 }
 			    dataRoom.setState("1");
-//                List<Student> listStudent = baseMapper.queryRoomNo(dataRoom);
-//                if (listStudent==null || listStudent.size()<1){
-//                        dataRoom.setExistingNum(0);
-//                       //未住满
-//                }else if (listStudent.size()<dataRoom.getFullNum()){
-//                        dataRoom.setExistingNum(listStudent.size());
-//                        dataRoom.setState("1");//未住满
-//                }else if (listStudent.size()==dataRoom.getFullNum()||listStudent.size()>dataRoom.getFullNum()){
-//                        throw new BusinessException(ErrCode.FAIL,"该房间已经住满！");
-//                }
                 return insert(dataRoom);
         }
 
@@ -79,7 +69,13 @@ public class DataRoomServiceImpl extends ServiceImpl<DataRoomDao, DataRoom> impl
         }
 
         @Override
-        public boolean deleteRoom(String rid) {
-                return  baseMapper.deleteRoom(rid);
+        public boolean deleteRoom(List<String> rid) {
+                if (rid==null || rid.size()<1){
+                        throw new BusinessException(ErrCode.FAIL,"请选择要删除的数据");
+                }
+                if (baseMapper.deleteRoom(rid)>0){
+                        return true;
+                }
+                return  false;
         }
 }

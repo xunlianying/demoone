@@ -63,4 +63,12 @@
     </select>
 
 
+    <update id="deleteStudent" parameterType="java.lang.String">
+        update data_student set delete_state=1 where sid
+        in (
+        <foreach collection="sid" item="item" index="" separator=",">
+            #{item}
+        </foreach>
+        )
+    </update>
 </mapper>

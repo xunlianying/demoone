@@ -40,10 +40,9 @@
     <update id="deleteCoach" parameterType="java.lang.String">
        update data_coach set delete_state=1 where cid
        in (
-        <foreach collection="cid" item="item" index="index" separator=",">
+        <foreach collection="cid" item="item" index="" separator=",">
             #{item}
         </foreach>
        )
-
     </update>
 </mapper>

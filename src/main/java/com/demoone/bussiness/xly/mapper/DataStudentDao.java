@@ -7,6 +7,7 @@ import com.demoone.bussiness.xly.entity.DataStudent;
 import com.baomidou.mybatisplus.mapper.BaseMapper;
 import com.demoone.bussiness.xly.vo.QueryStudentInfoVo;
 import com.demoone.bussiness.xly.vo.DataStudentInfoVo;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
@@ -69,8 +70,8 @@ public interface DataStudentDao extends BaseMapper<DataStudent> {
 
     List<DataStudentInfoVo> queryStudentInfo(Page page, QueryStudentInfoVo queryStudentInfoVo);
 
-    @Update(" update data_student set delete_state=1  where sid=#{sid} ")
-    boolean deleteStudent(String sid);
+    //@Update(" update data_student set delete_state=1  where sid=#{sid} ")
+    int  deleteStudent(@Param("sid") List<String> sid);
 
 
     @Select("select * from data_room  where rid=#{roomNo} and delete_state=0 ")
@@ -78,4 +79,7 @@ public interface DataStudentDao extends BaseMapper<DataStudent> {
 
     @Select("select * from data_student where room_no=#{roomNo}  and delete_state=0 ")
     List<DataStudent> queryRoomStudentList(String roomNo);
+
+    @Update("update data_student set state=0 where sid=#{sid} and delete_state=0")
+    boolean jiHuoZhouQi(String sid);
 }

@@ -56,5 +56,7 @@ public interface IDataStudentService extends IService<DataStudent> {
 
     boolean updateStudent(DataStudent dataStudent);
 
-    boolean deleteStudent(String sid);
+    boolean deleteStudent(List<String> sid);
+
+    boolean jiHuoZhouQi(String sid);
 }
