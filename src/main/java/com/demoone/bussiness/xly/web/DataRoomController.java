@@ -65,12 +65,13 @@ public class DataRoomController {
 
     @ApiOperation(value = "分页查询", notes = "分页查询")
     @ApiImplicitParams({
-            @ApiImplicitParam(name = "page", value = "页数", paramType = "query", required = false,defaultValue = "1"),
-            @ApiImplicitParam(name = "size", value = "每页条数", paramType = "query", required = false,defaultValue = "10")
+            @ApiImplicitParam(name = "page", value = "页数", paramType = "query", defaultValue = "1"),
+            @ApiImplicitParam(name = "size", value = "每页条数", paramType = "query",defaultValue = "10"),
+            @ApiImplicitParam(name = "roomNo", value = "房间号", paramType = "query")
     })
     @GetMapping("list")
     public OptResult list( Integer page, Integer size,String roomNo) {
-        OptResult result = null;
+        OptResult result = OptResult.success();
         if (page ==null){
             page=1;
         }
